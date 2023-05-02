@@ -8,8 +8,8 @@
     "plugin:react/recommended",
     "plugin:import/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
   ],
   "overrides": [],
   "parserOptions": {
@@ -19,7 +19,7 @@
       "jsx": true
     }
   },
-  "plugins": ["react", "import", "jsx-a11y", "prettier", "react-hooks"],
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks", "prettier"],
   "ignorePatterns": ["node_modules/", ".prettierrc.json"],
   "rules": {
     "react/react-in-jsx-scope": 0,
@@ -41,6 +41,12 @@
         "pathGroupsExcludedImportTypes": [],
         "alphabetize": { "order": "asc", "caseInsensitive": true },
         "newlines-between": "always"
+      }
+    ],
+    "prettier/prettier": [
+      2,
+      {
+        "endOfLine": "auto"
       }
     ]
   }
