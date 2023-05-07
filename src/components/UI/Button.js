@@ -87,7 +87,8 @@ function Button({
   color,
   size = "medium",
   outline,
-  noPadding
+  noPadding,
+  fullWidth
 }) {
   return (
     <StyledButton
@@ -96,6 +97,7 @@ function Button({
       size={size}
       outline={outline}
       noPadding={noPadding}
+      fullWidth={fullWidth}
     >
       {children}
     </StyledButton>
