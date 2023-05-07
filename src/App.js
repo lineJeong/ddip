@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
 import BungaeMainPage from "./pages/BunageMain";
 import BungaeDetailPage from "./pages/BungaeDetail";
@@ -13,6 +14,7 @@ import ProfilePage from "./pages/Profile";
 import RootLayout from "./pages/Root";
 import SignupPage from "./pages/Signup";
 import WithdrawalPage from "./pages/Withdrawal";
+import theme from "./styles/theme";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +54,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
 export default App;
