@@ -39,24 +39,30 @@ const fullWidthStyle = css`
     css`
       width: 100%;
       justify-content: center;
-      &:not(:first-child) {
-        margin-top: 0.625rem;
-      }
     `}
 `;
 
 const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
+  font-weight: ${(props) => props.theme.fontWeight.semiBold};
   outline: none;
   border: none;
   border-radius: 5px;
-  font-weight: ${(props) => props.theme.fontWeight.semiBold};
-
-  color: ${(props) => props.color || "black"};
+  ${({ radius }) =>
+    radius === "bottom" &&
+    css`
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    `}
 
   padding-right: 0.875rem;
   padding-left: 0.875rem;
+  ${({ marginTop }) =>
+    marginTop &&
+    css`
+      margin-top: ${marginTop};
+    `}
 
   ${colorStyles}
 
@@ -88,7 +94,9 @@ function Button({
   size = "medium",
   outline,
   noPadding,
-  fullWidth
+  fullWidth,
+  marginTop,
+  radius
 }) {
   return (
     <StyledButton
@@ -98,6 +106,8 @@ function Button({
       outline={outline}
       noPadding={noPadding}
       fullWidth={fullWidth}
+      marginTop={marginTop}
+      radius={radius}
     >
       {children}
     </StyledButton>
