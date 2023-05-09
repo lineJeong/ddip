@@ -51,7 +51,7 @@ const StyledButton = styled.button`
   outline: none;
   border: none;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: ${(props) => props.theme.fontWeight.semiBold};
 
   color: ${(props) => props.color || "black"};
 
