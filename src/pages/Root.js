@@ -17,7 +17,7 @@ function RootLayout() {
   // logoOnly, noSearchBox, loggedIn
   let logoOnly = false;
   let noSearchBox = false;
-  let layout = "lg";
+  let maxWidth = "lg";
   let background = false;
 
   switch (pathname) {
@@ -25,7 +25,7 @@ function RootLayout() {
     case "/signup":
     case "/email-auth": {
       logoOnly = true;
-      layout = "sm";
+      maxWidth = "sm";
       background = true;
       break;
     }
@@ -37,7 +37,7 @@ function RootLayout() {
   return (
     <StyledRootLayout background={background}>
       <MainNavigation logoOnly={logoOnly} noSearchBox={noSearchBox} />
-      <PageContent layout={layout}>
+      <PageContent maxWidth={maxWidth}>
         <Outlet />
       </PageContent>
     </StyledRootLayout>

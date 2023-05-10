@@ -8,13 +8,13 @@ const StyledPageContent = styled.main`
   flex-direction: column;
   align-items: center;
 
-  ${({ layout }) => {
-    if (layout === "md") {
+  ${({ maxWidth }) => {
+    if (maxWidth === "md") {
       return css`
         max-width: 1016px;
       `;
     }
-    if (layout === "sm") {
+    if (maxWidth === "sm") {
       return css`
         max-width: 406px;
       `;
@@ -28,9 +28,9 @@ const StyledPageContent = styled.main`
     `}
 `;
 
-function PageContent({ children, layout = "lg", background }) {
+function PageContent({ children, maxWidth = "lg", background }) {
   return (
-    <StyledPageContent layout={layout} background={background}>
+    <StyledPageContent maxWidth={maxWidth} background={background}>
       {children}
     </StyledPageContent>
   );

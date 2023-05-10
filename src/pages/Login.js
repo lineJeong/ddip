@@ -1,22 +1,17 @@
-import styled from "styled-components";
-
+import AuthPageLayout from "../components/AuthPageLayout";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 
-const InputContainer = styled.div`
-  width: 100%;
-  margin-top: 30px;
-`;
-
 function LoginPage() {
-  return (
+  const input = (
     <>
-      <h1>로그인</h1>
-      <InputContainer>
-        <Input type="email" placeholder="이메일" radius="top" />
-        <Input type="password" placeholder="비밀번호" radius="bottom" />
-      </InputContainer>
+      <Input type="email" placeholder="이메일" radius="top" />
+      <Input type="password" placeholder="비밀번호" radius="bottom" />
+    </>
+  );
 
+  const button = (
+    <>
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         로그인
       </Button>
@@ -31,6 +26,8 @@ function LoginPage() {
       </Button>
     </>
   );
+
+  return <AuthPageLayout heading="로그인" input={input} button={button} />;
 }
 
 export default LoginPage;
