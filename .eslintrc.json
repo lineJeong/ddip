@@ -30,10 +30,10 @@
     "import/order": [
       2,
       {
-        "groups": ["builtin", "external", ["index", "sibling", "parent"]],
+        "groups": ["builtin", "external", ["parent", "sibling", "index"]],
         "pathGroups": [
           {
-            "pattern": "{react,react-dom/**}",
+            "pattern": "{react,react-dom/**,react-router-dom}",
             "group": "external",
             "position": "before"
           }
