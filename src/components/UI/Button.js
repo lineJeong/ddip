@@ -34,8 +34,8 @@ const sizeStyles = css`
 `;
 
 const fullWidthStyle = css`
-  ${(props) =>
-    props.fullWidth &&
+  ${({ fullWidth }) =>
+    fullWidth &&
     css`
       width: 100%;
       justify-content: center;
@@ -45,7 +45,7 @@ const fullWidthStyle = css`
 const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
-  font-weight: ${(props) => props.theme.fontWeight.semiBold};
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   outline: none;
   border: none;
   border-radius: 5px;
@@ -68,22 +68,33 @@ const StyledButton = styled.button`
 
   ${sizeStyles}
 
-  ${(props) =>
-    props.outline &&
+  ${({ outline }) =>
+    outline &&
     css`
       border: 1px solid black;
     `}
 
-  ${(props) =>
-    props.noPadding &&
+  ${({ noPadding }) =>
+    noPadding &&
     css`
       padding: 0rem;
     `}
 
   ${fullWidthStyle}
 
-  > .icon-with-text {
-    margin-right: 6px;
+  > div:first-child {
+    display: flex;
+    ${({ iconWidth }) =>
+      iconWidth &&
+      css`
+        width: ${iconWidth};
+      `}
+
+    ${({ iconWithText }) =>
+      iconWithText &&
+      css`
+        margin-right: 6px;
+      `}
   }
 `;
 
@@ -96,7 +107,9 @@ function Button({
   noPadding,
   fullWidth,
   marginTop,
-  radius
+  radius,
+  iconWidth,
+  iconWithText
 }) {
   return (
     <StyledButton
@@ -108,6 +121,8 @@ function Button({
       fullWidth={fullWidth}
       marginTop={marginTop}
       radius={radius}
+      iconWidth={iconWidth}
+      iconWithText={iconWithText}
     >
       {children}
     </StyledButton>
