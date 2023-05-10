@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import styled, { css } from "styled-components";
 
 const StyledBungaeCard = styled.li`
@@ -7,15 +8,15 @@ const StyledBungaeCard = styled.li`
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
-  background: {(props) => props.theme.palette.white};
+  background: ${({ theme }) => theme.palette.white};
   border: 1px solid black;
   border-radius: 5px;
   padding: 26px 20px;
-  
-  ${(props) =>
-    props.statusText === "모집마감" &&
+
+  ${({ statusText }) =>
+    statusText === "모집마감" &&
     css`
-      background: ${(props) => props.theme.palette.gray2};
+      background: ${({ theme }) => theme.palette.gray2};
     `}
 
   p {
@@ -25,14 +26,15 @@ const StyledBungaeCard = styled.li`
   > .status {
     color: ${({ theme, statusColor }) => theme.palette[statusColor]};
     font-size: 0.875rem;
-    font-weight: ${(props) => props.theme.fontWeight.bold};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     margin-bottom: 14px;
   }
 
-  > .place, .time {
-    color:  ${(props) => props.theme.palette.gray4};
+  > .place,
+  .time {
+    color: ${({ theme }) => theme.palette.gray4};
     font-size: 1rem;
-    font-weight: ${(props) => props.theme.fontWeight.semiBold};
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
     p:first-child {
       margin-right: 8px;
     }
@@ -43,15 +45,15 @@ const StyledBungaeCard = styled.li`
   > .time {
     margin-bottom: 14px;
   }
-  
+
   > h1 {
     font-size: 1.125rem;
-    font-weight: ${(props) => props.theme.fontWeight.bold};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
     margin-bottom: 12px;
     line-height: 1.375rem;
     height: 44px;
-    ${(props) =>
-      props.statusText === "모집마감" &&
+    ${({ statusText }) =>
+      statusText === "모집마감" &&
       css`
         color: ${({ theme, statusColor }) => theme.palette[statusColor]};
       `}
@@ -63,30 +65,31 @@ const StyledBungaeCard = styled.li`
     margin-bottom: 20px;
     font-size: 0.875rem;
 
-    > .nickname, .numbers {
+    > .nickname,
+    .numbers {
       span:last-child {
         margin-left: 4px;
       }
     }
     > .numbers {
-     display: inline-flex;
-     align-items: center; 
+      display: inline-flex;
+      align-items: center;
     }
     > .nickname {
-    color:  ${(props) => props.theme.palette.gray4};
+      color: ${({ theme }) => theme.palette.gray4};
+    }
   }
-}
 
   > .duration {
-    font-weight: ${(props) => props.theme.fontWeight.semiBold};
+    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
     text-align: center;
     > div {
-      color: ${(props) => props.theme.palette.mainViolet};
-      font-size: ${(props) => props.theme.fontSize["4xl"]};
-      font-weight: ${(props) => props.theme.fontWeight.bold};
+      color: ${({ theme }) => theme.palette.mainViolet};
+      font-size: ${({ theme }) => theme.fontSize["4xl"]};
+      font-weight: ${({ theme }) => theme.fontWeight.bold};
       margin-top: 10px;
-      ${(props) =>
-        props.statusText === "모집마감" &&
+      ${({ statusText }) =>
+        statusText === "모집마감" &&
         css`
           color: ${({ theme, statusColor }) => theme.palette[statusColor]};
         `}

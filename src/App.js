@@ -1,6 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import { ThemeProvider } from "styled-components";
 
+import theme from "./@styles/theme";
 import BungaeMainPage from "./pages/BunageMain";
 import BungaeDetailPage from "./pages/BungaeDetail";
 import BungaeSearchPage from "./pages/BungaeSearch";
@@ -14,7 +16,6 @@ import ProfilePage from "./pages/Profile";
 import RootLayout from "./pages/Root";
 import SignupPage from "./pages/Signup";
 import WithdrawalPage from "./pages/Withdrawal";
-import theme from "./styles/theme";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
         element: <LoginPage />
       },
       {
-        path: "email-auth",
+        path: "/email-auth",
         element: <EmailAuthPage />
       },
       {
