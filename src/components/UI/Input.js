@@ -4,7 +4,7 @@ const StyledInput = styled.div`
   width: 100%;
 
   > .label-wrapper {
-    font-size: ${(props) => props.theme.fontSize.xs};
+    font-size: ${({ theme }) => theme.fontSize.xs};
     margin-bottom: 6px;
   }
 
@@ -12,7 +12,7 @@ const StyledInput = styled.div`
     width: 100%;
     min-height: 42px;
     padding: 0px 18px;
-    font-size: ${(props) => props.theme.fontSize.sm};
+    font-size: ${({ theme }) => theme.fontSize.sm};
     border: 1px solid black;
     border-radius: 5px 5px 5px 5px;
 
