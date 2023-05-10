@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <LoginPage />
       },
       {
-        path: "email-auth",
+        path: "/email-auth",
         element: <EmailAuthPage />
       },
       {
