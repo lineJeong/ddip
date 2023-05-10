@@ -58,11 +58,11 @@ const Header = styled.header`
     }
   }
 
-  ${({ logoOnly, theme }) =>
+  ${({ logoOnly }) =>
     logoOnly &&
     css`
       justify-content: center;
-      background: ${theme.palette.mainMauve};
+      background: inherit;
     `}
 
   ${({ noSearchBox }) =>
