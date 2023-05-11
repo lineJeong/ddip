@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const StyledPageContent = styled.main`
+const StyledRootPageContent = styled.main`
   max-width: 1220px;
   padding: 40px 20px;
   margin: 0 auto;
@@ -28,12 +28,12 @@ const StyledPageContent = styled.main`
     `}
 `;
 
-function PageContent({ children, maxWidth = "lg", background }) {
+function RootPageContent({ children, maxWidth = "lg", background }) {
   return (
-    <StyledPageContent maxWidth={maxWidth} background={background}>
+    <StyledRootPageContent maxWidth={maxWidth} background={background}>
       {children}
-    </StyledPageContent>
+    </StyledRootPageContent>
   );
 }
 
-export default PageContent;
+export default RootPageContent;
