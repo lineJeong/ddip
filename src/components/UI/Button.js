@@ -56,6 +56,8 @@ const StyledButton = styled.button`
       border-top-right-radius: 0px;
     `}
 
+  padding-top: 0px;
+  padding-bottom: 0px;
   padding-right: 0.875rem;
   padding-left: 0.875rem;
   ${({ marginTop }) =>

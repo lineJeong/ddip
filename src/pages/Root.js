@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import MainNavigation from "../components/MainNavigation";
-import PageContent from "../components/UI/PageContent";
+import RootPageContent from "../components/PageContent/RootPageContent";
 
 const StyledRootLayout = styled.div`
   min-height: 100vh;
@@ -37,9 +37,9 @@ function RootLayout() {
   return (
     <StyledRootLayout background={background}>
       <MainNavigation logoOnly={logoOnly} noSearchBox={noSearchBox} />
-      <PageContent maxWidth={maxWidth}>
+      <RootPageContent maxWidth={maxWidth}>
         <Outlet />
-      </PageContent>
+      </RootPageContent>
     </StyledRootLayout>
   );
 }

@@ -1,16 +1,18 @@
-import AuthPageLayout from "../components/AuthPageLayout";
+import AuthPageContent from "../components/PageContent/AuthPageContent";
 import Button from "../components/UI/Button";
+import ErrorMsg from "../components/UI/ErrorMsg";
 import Input from "../components/UI/Input";
 
 function LoginPage() {
-  const input = (
+  const inputs = (
     <>
       <Input type="email" placeholder="이메일" radius="top" />
       <Input type="password" placeholder="비밀번호" radius="bottom" />
+      <ErrorMsg hasError>이메일을 입력해주세요.</ErrorMsg>
     </>
   );
 
-  const button = (
+  const buttons = (
     <>
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         로그인
@@ -27,7 +29,7 @@ function LoginPage() {
     </>
   );
 
-  return <AuthPageLayout heading="로그인" input={input} button={button} />;
+  return <AuthPageContent heading="로그인" inputs={inputs} buttons={buttons} />;
 }
 
 export default LoginPage;

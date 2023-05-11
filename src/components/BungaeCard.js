@@ -25,7 +25,7 @@ const StyledBungaeCard = styled.li`
 
   > .status {
     color: ${({ theme, statusColor }) => theme.palette[statusColor]};
-    font-size: 0.875rem;
+    font-size: ${({ theme }) => theme.fontSize.sm};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     margin-bottom: 14px;
   }
@@ -33,7 +33,7 @@ const StyledBungaeCard = styled.li`
   > .place,
   .time {
     color: ${({ theme }) => theme.palette.gray4};
-    font-size: 1rem;
+    font-size: ${({ theme }) => theme.fontSize.base};
     font-weight: ${({ theme }) => theme.fontWeight.semiBold};
     p:first-child {
       margin-right: 8px;
@@ -47,7 +47,7 @@ const StyledBungaeCard = styled.li`
   }
 
   > h1 {
-    font-size: 1.125rem;
+    font-size: ${({ theme }) => theme.fontSize.md};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     margin-bottom: 12px;
     line-height: 1.375rem;
@@ -63,7 +63,7 @@ const StyledBungaeCard = styled.li`
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-    font-size: 0.875rem;
+    font-size: ${({ theme }) => theme.fontSize.xs};
 
     > .nickname,
     .numbers {
