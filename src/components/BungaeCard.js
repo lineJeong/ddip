@@ -102,11 +102,11 @@ function BungaeCard({
   place,
   time,
   title,
-  imoji,
+  emoji,
   nickname,
-  numberOfParticipants,
-  numberOfRecruits,
-  duration
+  numberOfParticipants = 0,
+  numberOfRecruits = 0,
+  duration = "00:00:00"
 }) {
   return (
     <Link>
@@ -123,7 +123,7 @@ function BungaeCard({
         <h1>{title}</h1>
         <div className="bungaeInfo-nickname-numbers">
           <div className="nickname">
-            <span>{imoji}</span>
+            <span>{emoji}</span>
             <span>{nickname}</span>
           </div>
           <div className="numbers">

@@ -45,6 +45,7 @@ const router = createBrowserRouter([
         path: "/profile/:nickname",
         children: [
           { index: true, element: <ProfilePage /> },
+          { path: ":sort", element: <ProfilePage /> },
           { path: "withdraw", element: <WithdrawalPage /> },
           { path: "modify", element: <ModifyUserInfoPage /> }
         ]

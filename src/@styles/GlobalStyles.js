@@ -50,10 +50,6 @@ button {
     background: transparent;
 	cursor: pointer;
 }
-h1 {
-	font-size: 1.75rem;
-	font-weight: bold;
-}
 `;
 
 export default GlobalStyles;
