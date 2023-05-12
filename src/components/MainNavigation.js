@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styled, { css } from "styled-components";
 
 import Button from "./UI/Button";
@@ -73,28 +75,26 @@ const Header = styled.header`
 `;
 
 function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
+  const ddipLogo = (
+    <Link to="/" className="ddip-logo">
+      <img className="logo" src="/images/logo.svg" alt="ddip-logo" />
+    </Link>
+  );
+
   if (logoOnly) {
-    return (
-      <Header logoOnly={logoOnly}>
-        <div className="ddip-logo">
-          <img className="logo" src="/images/logo.svg" alt="ddip-logo" />
-        </div>
-      </Header>
-    );
+    return <Header logoOnly={logoOnly}>{ddipLogo}</Header>;
   }
 
   return (
     <Header noSearchBox={noSearchBox}>
-      <div className="ddip-logo">
-        <img src="/images/logo.svg" alt="ddip-logo" />
-      </div>
+      {ddipLogo}
       {!noSearchBox && (
-        <div className="search-box">
+        <Link to="/bungae/search" className="search-box">
           <div className="search-icon">
             <img src="/images/search.svg" alt="search" />
           </div>
           <span>어떤 번개를 찾으시나요?</span>
-        </div>
+        </Link>
       )}
       <div className="right-buttons">
         <Button
