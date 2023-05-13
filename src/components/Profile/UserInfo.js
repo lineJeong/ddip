@@ -42,7 +42,7 @@ function UserInfo({ emoji, nickname, email }) {
       <p className="email">{email}</p>
       <Button
         background="mainMauve"
-        onClick={() => navigate(`/profile/${nickname}/modify`)}
+        onClick={() => navigate(`/profile/modify`)}
       >
         프로필 수정
       </Button>

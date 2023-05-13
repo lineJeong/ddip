@@ -42,10 +42,11 @@ const router = createBrowserRouter([
         element: <EmailAuthPage />
       },
       {
-        path: "/profile/:nickname",
+        path: "/profile",
         children: [
           { index: true, element: <ProfilePage /> },
-          { path: ":sort", element: <ProfilePage /> }, // 로더로 허용되지 않은 prams는 에러페이지
+          { path: "created", element: <ProfilePage /> },
+          { path: "participated", element: <ProfilePage /> },
           { path: "withdraw", element: <WithdrawalPage /> },
           { path: "modify", element: <ModifyUserInfoPage /> }
         ]

@@ -11,11 +11,11 @@ const StyledUserBungaeList = styled.section`
   align-items: center;
 `;
 
-function UserBungaeList({ sortParams, switchTab, tabMenu, bungaeList }) {
+function UserBungaeList({ sortPathname, switchTab, tabMenu, bungaeList }) {
   return (
     <StyledUserBungaeList>
       <SortTab
-        sortParams={sortParams}
+        sortPathname={sortPathname}
         switchTab={switchTab}
         tabMenu={tabMenu}
       />
