@@ -3,22 +3,35 @@ import styled from "styled-components";
 import * as bungaeCardUtil from "../../@utils/bungaeCard";
 import BungaeCard from "../BungaeCard";
 import BungaeListContent from "../PageContent/BungaeListContent";
-import SortTab from "../UI/SortTab";
+import SimplePagination from "../UI/SimplePagination";
 
-const StyledUserBungaeList = styled.section`
+const StyledUpperContent = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  .en-heading {
+    font-size: ${({ theme }) => theme.fontSize.md};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    color: ${({ theme }) => theme.palette.mainNavy};
+    margin-bottom: 12px;
+  }
+  .ko-heading {
+    font-size: ${({ theme }) => theme.fontSize["2xl"]};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+  }
 `;
 
-function UserBungaeList({ sortPathname, switchTab, tabMenu, bungaeList }) {
+function NewBungaeList({ enHeading, koHeading, bungaeList }) {
   return (
-    <StyledUserBungaeList>
-      <SortTab
-        sortPathname={sortPathname}
-        switchTab={switchTab}
-        tabMenu={tabMenu}
-      />
+    <>
+      <StyledUpperContent>
+        <div>
+          <div className="en-heading">{enHeading}</div>
+          <div className="ko-heading">{koHeading}</div>
+        </div>
+        <SimplePagination />
+      </StyledUpperContent>
       <BungaeListContent>
         {bungaeList.map(
           ({
@@ -53,8 +66,8 @@ function UserBungaeList({ sortPathname, switchTab, tabMenu, bungaeList }) {
           }
         )}
       </BungaeListContent>
-    </StyledUserBungaeList>
+    </>
   );
 }
 
-export default UserBungaeList;
+export default NewBungaeList;
