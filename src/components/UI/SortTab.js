@@ -17,19 +17,19 @@ const StyledSortTab = styled.div`
   }
 `;
 
-function SortTab({ sortParams, switchTab, tabMenu }) {
+function SortTab({ sortPathname, switchTab, tabMenu }) {
   return (
     <StyledSortTab>
       {tabMenu.map((menu) => (
         <Link
-          to={menu.linkTo}
+          to={menu.pathname}
           key={menu.name}
-          onClick={() => switchTab(menu.params)}
+          onClick={() => switchTab(menu.pathname)}
         >
           <div className="user-tab">
             <div>{menu.name}</div>
           </div>
-          {menu.params === sortParams && <div className="underscore"></div>}
+          {menu.pathname === sortPathname && <div className="underscore"></div>}
         </Link>
       ))}
     </StyledSortTab>

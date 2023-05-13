@@ -20,17 +20,11 @@ const StyledRootPageContent = styled.main`
       `;
     }
   }}
-
-  ${({ background }) =>
-    background &&
-    css`
-      background: ${({ theme }) => theme.palette.mainMauve};
-    `}
 `;
 
-function RootPageContent({ children, maxWidth = "lg", background }) {
+function RootPageContent({ children, maxWidth = "lg" }) {
   return (
-    <StyledRootPageContent maxWidth={maxWidth} background={background}>
+    <StyledRootPageContent maxWidth={maxWidth}>
       {children}
     </StyledRootPageContent>
   );

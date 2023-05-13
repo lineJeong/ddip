@@ -1,5 +1,7 @@
+import RootPageContent from "../components/PageContent/RootPageContent";
+
 function CreateBungaePage() {
-  return <div>CreateBungaePage</div>;
+  return <RootPageContent maxWidth="md">CreateBungaePage</RootPageContent>;
 }
 
 export default CreateBungaePage;

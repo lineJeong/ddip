@@ -1,5 +1,7 @@
+import RootPageContent from "../components/PageContent/RootPageContent";
+
 function EditBungaePage() {
-  return <div>EditBungaePage</div>;
+  return <RootPageContent maxWidth="md">EditBungaePage</RootPageContent>;
 }
 
 export default EditBungaePage;

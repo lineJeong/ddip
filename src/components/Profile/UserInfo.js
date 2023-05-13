@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 
 import Button from "../UI/Button";
@@ -32,12 +34,18 @@ const StyledUserInfo = styled.section`
 `;
 
 function UserInfo({ emoji, nickname, email }) {
+  const navigate = useNavigate();
   return (
     <StyledUserInfo>
       <div className="emoji">{emoji}</div>
       <p className="nickname">{nickname}</p>
       <p className="email">{email}</p>
-      <Button background="mainMauve">프로필 수정</Button>
+      <Button
+        background="mainMauve"
+        onClick={() => navigate(`/profile/modify`)}
+      >
+        프로필 수정
+      </Button>
     </StyledUserInfo>
   );
 }

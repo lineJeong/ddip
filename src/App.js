@@ -42,10 +42,11 @@ const router = createBrowserRouter([
         element: <EmailAuthPage />
       },
       {
-        path: "/profile/:nickname",
+        path: "/profile",
         children: [
           { index: true, element: <ProfilePage /> },
-          { path: ":sort", element: <ProfilePage /> },
+          { path: "created", element: <ProfilePage /> },
+          { path: "participated", element: <ProfilePage /> },
           { path: "withdraw", element: <WithdrawalPage /> },
           { path: "modify", element: <ModifyUserInfoPage /> }
         ]

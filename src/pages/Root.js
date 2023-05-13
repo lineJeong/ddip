@@ -3,7 +3,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 import MainNavigation from "../components/MainNavigation";
-import RootPageContent from "../components/PageContent/RootPageContent";
 
 const StyledRootLayout = styled.div`
   min-height: 100vh;
@@ -14,10 +13,11 @@ const StyledRootLayout = styled.div`
 
 function RootLayout() {
   const { pathname } = useLocation();
+
   // logoOnly, noSearchBox, loggedIn
   let logoOnly = false;
   let noSearchBox = false;
-  let maxWidth = "lg";
+
   let background = false;
 
   switch (pathname) {
@@ -25,7 +25,6 @@ function RootLayout() {
     case "/signup":
     case "/email-auth": {
       logoOnly = true;
-      maxWidth = "sm";
       background = true;
       break;
     }
@@ -37,9 +36,7 @@ function RootLayout() {
   return (
     <StyledRootLayout background={background}>
       <MainNavigation logoOnly={logoOnly} noSearchBox={noSearchBox} />
-      <RootPageContent maxWidth={maxWidth}>
-        <Outlet />
-      </RootPageContent>
+      <Outlet />
     </StyledRootLayout>
   );
 }
