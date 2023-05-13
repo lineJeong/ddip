@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import * as bungaeCardUtil from "../../@utils/bungaeCard";
+import BungaeCard from "../BungaeCard";
+
 const StyledBungaeListContent = styled.div`
   width: 100%;
   ul {
@@ -20,10 +23,43 @@ const StyledBungaeListContent = styled.div`
   }
 `;
 
-function BungaeListContent({ children }) {
+function BungaeListContent({ bungaeList }) {
   return (
     <StyledBungaeListContent>
-      <ul>{children}</ul>
+      <ul>
+        {bungaeList.map(
+          ({
+            id,
+            owner,
+            title,
+            location,
+            createdAt,
+            meetingAt,
+            numberOfParticipants,
+            numberOfRecruits
+          }) => {
+            const status = bungaeCardUtil.getBungaeStatus(createdAt, meetingAt);
+            const place = location.city + " " + location.state;
+            const time = bungaeCardUtil.getMeetingTime(meetingAt);
+            const duration = bungaeCardUtil.getBungaeDuration(meetingAt);
+            return (
+              <BungaeCard
+                key={id}
+                id={id}
+                status={status}
+                place={place}
+                time={time}
+                title={title}
+                emoji={owner.emoji}
+                nickname={owner.nickname}
+                numberOfParticipants={numberOfParticipants}
+                numberOfRecruits={numberOfRecruits}
+                duration={duration}
+              />
+            );
+          }
+        )}
+      </ul>
     </StyledBungaeListContent>
   );
 }
