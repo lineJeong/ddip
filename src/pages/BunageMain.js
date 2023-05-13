@@ -1,5 +1,7 @@
+import RootPageContent from "../components/PageContent/RootPageContent";
+
 function BungaeMainPage() {
-  return <div>BungaeMainPage</div>;
+  return <RootPageContent>BungaeMainPage</RootPageContent>;
 }
 
 export default BungaeMainPage;

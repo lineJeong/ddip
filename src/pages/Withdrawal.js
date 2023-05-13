@@ -1,5 +1,7 @@
+import RootPageContent from "../components/PageContent/RootPageContent";
+
 function WithdrawalPage() {
-  return <div>WithdrawalPage</div>;
+  return <RootPageContent maxWidth="sm">WithdrawalPage</RootPageContent>;
 }
 
 export default WithdrawalPage;

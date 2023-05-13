@@ -1,5 +1,7 @@
+import RootPageContent from "../components/PageContent/RootPageContent";
+
 function ErrorPage() {
-  return <div>ErrorPage</div>;
+  return <RootPageContent>ErrorPage</RootPageContent>;
 }
 
 export default ErrorPage;
