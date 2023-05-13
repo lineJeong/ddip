@@ -18,6 +18,7 @@ const fontWeight = {
 const palette = {
   mainViolet: "#5F32E4",
   mainMauve: "#E5E2F6",
+  mainNavy: "#3B3486",
   black: "black",
   white: "white",
   gray1: "#EDEDED",
