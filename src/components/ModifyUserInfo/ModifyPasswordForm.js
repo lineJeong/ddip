@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 import Button from "../UI/Button";
+import ErrorMsg from "../UI/ErrorMsg";
 import Input from "../UI/Input";
 import InputWithLabel from "../UI/InputWithLabel";
 
-const StyledModifyPassword = styled.section`
+const StyledModifyPasswordForm = styled.section`
   width: 100%;
   margin-bottom: 60px;
 `;
 
-function ModifyPassword() {
+function ModifyPasswordForm() {
   return (
-    <StyledModifyPassword>
+    <StyledModifyPasswordForm>
       <InputWithLabel
         id="modify-password"
         label="비밀번호"
@@ -20,11 +21,12 @@ function ModifyPassword() {
       />
       <Input placeholder="새 비밀번호" radius="none" />
       <Input placeholder="새 비밀번호 확인" radius="bottom" />
+      <ErrorMsg hasError>비밀번호를 입력해주세요.</ErrorMsg>
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         비밀번호 변경하기
       </Button>
-    </StyledModifyPassword>
+    </StyledModifyPasswordForm>
   );
 }
 
-export default ModifyPassword;
+export default ModifyPasswordForm;

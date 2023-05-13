@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../UI/Button";
 import IconButton from "../UI/IconButton";
 
-const StyledModifyEmoji = styled.section`
+const StyledModifyEmojiForm = styled.section`
   width: 100%;
   margin-bottom: 40px;
   > .label {
@@ -26,9 +26,9 @@ const StyledModifyEmoji = styled.section`
   }
 `;
 
-function ModifyEmoji({ emoji }) {
+function ModifyEmojiForm({ emoji }) {
   return (
-    <StyledModifyEmoji>
+    <StyledModifyEmojiForm>
       <div className="label">이모지</div>
       <div className="emoji-change-box">
         <div className="emoji">{emoji}</div>
@@ -39,8 +39,8 @@ function ModifyEmoji({ emoji }) {
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         이모지 변경하기
       </Button>
-    </StyledModifyEmoji>
+    </StyledModifyEmojiForm>
   );
 }
 
-export default ModifyEmoji;
+export default ModifyEmojiForm;

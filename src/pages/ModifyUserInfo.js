@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-import ModifyEmoji from "../components/ModifyUserInfo/ModifyEmoji";
-import ModifyNickname from "../components/ModifyUserInfo/ModifyNickname";
-import ModifyPassword from "../components/ModifyUserInfo/ModifyPassword";
+import ModifyEmojiForm from "../components/ModifyUserInfo/ModifyEmojiForm";
+import ModifyNicknameForm from "../components/ModifyUserInfo/ModifyNicknameForm";
+import ModifyPasswordForm from "../components/ModifyUserInfo/ModifyPasswordForm";
 import HeadingPageContent from "../components/PageContent/HeadingPageContent";
 import RootPageContent from "../components/PageContent/RootPageContent";
 
@@ -23,9 +23,9 @@ function ModifyUserInfoPage() {
   return (
     <RootPageContent maxWidth="sm">
       <HeadingPageContent heading="프로필 수정">
-        <ModifyEmoji emoji={userInfo.emoji} />
-        <ModifyNickname />
-        <ModifyPassword />
+        <ModifyEmojiForm emoji={userInfo.emoji} />
+        <ModifyNicknameForm />
+        <ModifyPasswordForm />
         <StyledLink to={`/profile/withdraw`}>회원 탈퇴하기</StyledLink>
       </HeadingPageContent>
     </RootPageContent>
