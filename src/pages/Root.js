@@ -14,12 +14,17 @@ const StyledRootLayout = styled.div`
 
 function RootLayout() {
   const { pathname } = useLocation();
+
   // logoOnly, noSearchBox, loggedIn
   let logoOnly = false;
   let noSearchBox = false;
+
   let maxWidth = "lg";
   let background = false;
 
+  if (pathname.slice(0, 8) === "/profile") {
+    maxWidth = "sm";
+  }
   switch (pathname) {
     case "/login":
     case "/signup":

@@ -34,7 +34,7 @@ function ProfilePage() {
 
   return (
     <>
-      <UserInfo emoji="😶‍🌫️" nickname="닉네임입니다" email="test@test.com" />
+      <UserInfo emoji="😶‍🌫️" nickname={nickname} email="test@test.com" />
       <UserBungaeList
         sortParams={sortParams}
         switchTab={switchTab}

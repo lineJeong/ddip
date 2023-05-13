@@ -6,14 +6,13 @@ const Heading = styled.h1`
   font-weight: bold;
 `;
 
-function AuthPageContent({ heading, inputs, buttons }) {
+function HeadingPageContent({ heading, children }) {
   return (
     <>
       <Heading>{heading}</Heading>
-      {inputs}
-      {buttons}
+      {children}
     </>
   );
 }
 
-export default AuthPageContent;
+export default HeadingPageContent;

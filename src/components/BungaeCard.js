@@ -74,6 +74,10 @@ const StyledBungaeCard = styled.li`
     > .numbers {
       display: inline-flex;
       align-items: center;
+      > .icon {
+        width: 14px;
+        height: 14px;
+      }
     }
     > .nickname {
       color: ${({ theme }) => theme.palette.gray4};
@@ -127,7 +131,9 @@ function BungaeCard({
             <span>{nickname}</span>
           </div>
           <div className="numbers">
-            <img src="/images/recruit.svg" alt="recruit" />
+            <div className="icon">
+              <img src="/images/recruit.svg" alt="recruit" />
+            </div>
             <span>{`${numberOfParticipants}/${numberOfRecruits}`}</span>
           </div>
         </div>

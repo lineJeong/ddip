@@ -42,7 +42,9 @@ const fullWidthStyle = css`
     `}
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.button.attrs(({ onClick }) => {
+  onClick;
+})`
   display: inline-flex;
   align-items: center;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -86,10 +88,11 @@ const StyledButton = styled.button`
 
   > div:first-child {
     display: flex;
-    ${({ iconWidth }) =>
+    ${({ iconWidth, iconHeight }) =>
       iconWidth &&
       css`
         width: ${iconWidth};
+        height: ${iconHeight};
       `}
 
     ${({ iconWithText }) =>
@@ -111,7 +114,9 @@ function Button({
   marginTop,
   radius,
   iconWidth,
-  iconWithText
+  iconHeight,
+  iconWithText,
+  onClick
 }) {
   return (
     <StyledButton
@@ -124,7 +129,9 @@ function Button({
       marginTop={marginTop}
       radius={radius}
       iconWidth={iconWidth}
+      iconHeight={iconHeight}
       iconWithText={iconWithText}
+      onClick={onClick}
     >
       {children}
     </StyledButton>
