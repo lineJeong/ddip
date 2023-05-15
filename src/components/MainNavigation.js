@@ -33,6 +33,7 @@ const Header = styled.header`
     border: 1px solid black;
     border-radius: 5px;
     font-size: ${({ theme }) => theme.fontSize.sm};
+    color: ${({ theme }) => theme.palette.gray4};
 
     > .search-icon {
       width: 14px;
