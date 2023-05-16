@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
-const StyledSortTab = styled.div`
+const StyledSortTab = styled.ul`
   display: flex;
-  margin-bottom: 24px;
 
-  .user-tab {
+  > li {
+    cursor: pointer;
+  }
+
+  .tab-menu {
     padding: 0.5rem;
     font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   }
@@ -17,20 +18,20 @@ const StyledSortTab = styled.div`
   }
 `;
 
-function SortTab({ sortPathname, switchTab, tabMenu }) {
+function SortTab({ sortBy, onSwitch, tabMenu }) {
   return (
     <StyledSortTab>
       {tabMenu.map((menu) => (
-        <Link
-          to={menu.pathname}
+        <li
+          role="menuitem"
           key={menu.name}
-          onClick={() => switchTab(menu.pathname)}
+          onClick={() => onSwitch(menu.linkTo)}
         >
-          <div className="user-tab">
+          <div className="tab-menu">
             <div>{menu.name}</div>
           </div>
-          {menu.pathname === sortPathname && <div className="underscore"></div>}
-        </Link>
+          {menu.sortBy.includes(sortBy) && <div className="underscore"></div>}
+        </li>
       ))}
     </StyledSortTab>
   );
