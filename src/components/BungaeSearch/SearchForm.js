@@ -27,6 +27,7 @@ const LocalSearchWrapper = styled(KeywordSearchWrapper).attrs(
 )`
   border-radius: 0px;
   border-left: 0px;
+  cursor: pointer;
 
   > p {
     font-size: ${({ theme }) => theme.fontSize.sm};

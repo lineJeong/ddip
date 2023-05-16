@@ -7,16 +7,18 @@ const StyledUserBungaeList = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  > .margin-wrapper {
+    margin-bottom: 24px;
+  }
 `;
 
-function UserBungaeList({ sortPathname, switchTab, tabMenu, bungaeList }) {
+function UserBungaeList({ sortBy, onSwitchTab, tabMenu, bungaeList }) {
   return (
     <StyledUserBungaeList>
-      <SortTab
-        sortPathname={sortPathname}
-        switchTab={switchTab}
-        tabMenu={tabMenu}
-      />
+      <div className="margin-wrapper">
+        <SortTab sortBy={sortBy} onSwitch={onSwitchTab} tabMenu={tabMenu} />
+      </div>
       <BungaeListContent bungaeList={bungaeList} />
     </StyledUserBungaeList>
   );
