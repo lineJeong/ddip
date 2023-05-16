@@ -11,8 +11,8 @@ const fontSize = {
 };
 
 const fontWeight = {
-  semiBold: 600,
-  bold: "bold"
+  semiBold: 500,
+  bold: 700
 };
 
 const palette = {

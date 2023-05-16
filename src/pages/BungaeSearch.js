@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import styled from "styled-components";
 
+import { searchPageTabMenu as tabMenu } from "../@constants/constants";
+import { dummyBungaeList } from "../@constants/dummy";
 import LocalOptions from "../components/BungaeSearch/LocalOptions";
+import SearchedBungaeList from "../components/BungaeSearch/SearchedBungaeList";
 import SearchForm from "../components/BungaeSearch/SearchForm";
 import RootPageContent from "../components/PageContent/RootPageContent";
 
@@ -21,6 +25,18 @@ function BungaeSearchPage() {
   const [localOptionsIsOpen, setLocalOptionsIsOpen] = useState(false);
   const [currentSido, setCurrentSido] = useState(0);
   const [currentSigugun, setCurrentSigugun] = useState(null);
+
+  const [bungaeList, setBungaeList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sort = searchParams.get("sort");
+
+  useEffect(() => {
+    setBungaeList(dummyBungaeList);
+  }, []);
+
+  const switchTabHandler = (selected) => {
+    setSearchParams({ sort: selected });
+  };
 
   const toggleLocalOptionsHandler = () => {
     setLocalOptionsIsOpen((prev) => !prev);
@@ -62,7 +78,15 @@ function BungaeSearchPage() {
           onReset={resetSelectionHandler}
         />
       </StyledSection>
-      <StyledSection></StyledSection>
+      <StyledSection>
+        <SearchedBungaeList
+          count={bungaeList.length}
+          sortBy={sort}
+          onSwitchTab={switchTabHandler}
+          tabMenu={tabMenu}
+          bungaeList={bungaeList}
+        />
+      </StyledSection>
     </RootPageContent>
   );
 }
