@@ -18,8 +18,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T18:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T18:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -41,8 +41,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T19:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T19:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -64,8 +64,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T20:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T20:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -87,8 +87,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T21:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T21:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -110,8 +110,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T22:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T22:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -133,8 +133,8 @@ export const dummyBungaeList = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T23:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T23:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   }
@@ -160,8 +160,8 @@ export const dummyBungaeList2 = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T18:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T18:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -183,8 +183,8 @@ export const dummyBungaeList2 = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T19:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T19:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -206,8 +206,8 @@ export const dummyBungaeList2 = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T20:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T20:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   },
@@ -229,8 +229,8 @@ export const dummyBungaeList2 = [
       zipCode: "1234",
       detail: "303호"
     },
-    createdAt: "2023-05-16T00:00:00", // 필요
-    meetingAt: "2023-05-16T21:00:00",
+    createdAt: "2023-05-17T00:00:00", // 필요
+    meetingAt: "2023-05-17T21:00:00",
     numberOfParticipants: 2, // 필요
     numberOfRecruits: 4
   }
