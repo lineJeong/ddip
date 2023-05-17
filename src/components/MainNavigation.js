@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styled, { css } from "styled-components";
 
@@ -15,6 +15,7 @@ const Header = styled.header`
   padding-left: 1.5rem;
   border-bottom: 1px solid black;
   background: white;
+  z-index: 20;
 
   > .ddip-logo {
     width: 94px;
@@ -75,7 +76,13 @@ const Header = styled.header`
     `}
 `;
 
+const StyledLink = styled(Link)`
+  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+`;
+
 function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
+  const navigate = useNavigate();
+
   const ddipLogo = (
     <Link to="/" className="ddip-logo">
       <img className="logo" src="/images/logo.svg" alt="ddip-logo" />
@@ -103,6 +110,7 @@ function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
           color="white"
           iconWidth="16px"
           iconWithText
+          onClick={() => navigate("/bungae/create")}
         >
           <div>
             <img src="/images/thunder.svg" alt="thunder" />
@@ -116,9 +124,9 @@ function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
             </div>
           ) : (
             <>
-              <Button noPadding>회원가입</Button>
+              <StyledLink to="/signup">회원가입</StyledLink>
               <hr />
-              <Button noPadding>로그인</Button>
+              <StyledLink to="/login">로그인</StyledLink>
             </>
           )}
         </div>

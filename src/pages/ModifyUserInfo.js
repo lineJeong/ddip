@@ -26,7 +26,7 @@ function ModifyUserInfoPage() {
         <ModifyEmojiForm emoji={userInfo.emoji} />
         <ModifyNicknameForm />
         <ModifyPasswordForm />
-        <StyledLink to={`/profile/withdraw`}>회원 탈퇴하기</StyledLink>
+        <StyledLink to="/profile/withdraw">회원 탈퇴하기</StyledLink>
       </HeadingPageContent>
     </RootPageContent>
   );

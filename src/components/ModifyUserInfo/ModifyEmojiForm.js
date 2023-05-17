@@ -7,7 +7,7 @@ const StyledModifyEmojiForm = styled.section`
   width: 100%;
   margin-bottom: 40px;
   > .label {
-    font-size: ${({ theme }) => theme.fontSize.xs};
+    font-size: ${({ theme }) => theme.fontSize.sm};
     margin-bottom: 6px;
   }
   > .emoji-change-box {

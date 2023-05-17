@@ -13,11 +13,20 @@ const StyledInput = styled.input.attrs(
   })
 )`
   width: 100%;
-  min-height: 42px;
-  padding: 0px 18px;
-  font-size: ${({ theme }) => theme.fontSize.sm};
+  height: ${({ height }) => height || "42px"};
+  padding: 0px 14px;
   border: 1px solid black;
   border-radius: 5px 5px 5px 5px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  &:focus {
+    outline-color: ${({ theme }) => theme.palette.mainViolet};
+  }
+
+  ${({ fontSize }) =>
+    fontSize &&
+    css`
+      font-size: ${({ theme }) => theme.fontSize[fontSize]};
+    `}
 
   ${({ radius }) => {
     if (radius === "none") {
@@ -51,7 +60,9 @@ function Input({
   onChange,
   onBlur,
   disabled,
-  radius = "default"
+  radius = "default",
+  height,
+  fontSize
 }) {
   return (
     <StyledInput
@@ -64,6 +75,8 @@ function Input({
       onBlur={onBlur}
       disabled={disabled}
       radius={radius}
+      height={height}
+      fontSize={fontSize}
     ></StyledInput>
   );
 }

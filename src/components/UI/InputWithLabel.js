@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Input from "./Input";
 
@@ -6,8 +6,13 @@ const StyledInputWithLabel = styled.div`
   width: 100%;
 
   > .label-wrapper {
-    font-size: ${({ theme }) => theme.fontSize.xs};
     margin-bottom: 6px;
+    font-size: ${({ theme }) => theme.fontSize.sm};
+    ${({ fontSize }) =>
+      fontSize &&
+      css`
+        font-size: ${({ theme }) => theme.fontSize[fontSize]};
+      `}
   }
 `;
 
@@ -21,10 +26,12 @@ function InputWithLabel({
   onChange,
   onBlur,
   disabled,
-  radius = "default"
+  radius = "default",
+  height,
+  fontSize
 }) {
   return (
-    <StyledInputWithLabel>
+    <StyledInputWithLabel fontSize={fontSize}>
       <div className="label-wrapper">
         <label htmlFor={id}>{label}</label>
       </div>
@@ -38,6 +45,8 @@ function InputWithLabel({
         onBlur={onBlur}
         disabled={disabled}
         radius={radius}
+        height={height}
+        fontSize={fontSize}
       />
     </StyledInputWithLabel>
   );

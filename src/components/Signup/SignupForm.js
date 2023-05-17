@@ -29,7 +29,7 @@ function SignupForm() {
           placeholder="닉네임"
           radius="top"
         />
-        <Button background="white" radius="bottom" outline fullWidth>
+        <Button background="white" radius="bottom" size="sm" outline fullWidth>
           닉네임 중복 확인
         </Button>
         <ErrorMsg hasError>닉네임을 입력해주세요.</ErrorMsg>

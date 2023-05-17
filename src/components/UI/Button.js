@@ -12,16 +12,16 @@ const colorStyles = css`
 `;
 
 const sizes = {
-  large: {
+  lg: {
     height: "3rem",
     fontSize: "1.25rem"
   },
-  medium: {
+  md: {
     height: "2.875rem",
     fontSize: "1rem"
   },
-  small: {
-    height: "1.75rem",
+  sm: {
+    height: "2.5rem",
     fontSize: "0.875rem"
   }
 };
@@ -78,12 +78,6 @@ const StyledButton = styled.button.attrs(({ onClick }) => {
       border: 1px solid black;
     `}
 
-  ${({ noPadding }) =>
-    noPadding &&
-    css`
-      padding: 0rem;
-    `}
-
   ${fullWidthStyle}
 
   > div:first-child {
@@ -107,9 +101,8 @@ function Button({
   children,
   background,
   color,
-  size = "medium",
+  size = "md",
   outline,
-  noPadding,
   fullWidth,
   marginTop,
   radius,
@@ -124,7 +117,6 @@ function Button({
       color={color}
       size={size}
       outline={outline}
-      noPadding={noPadding}
       fullWidth={fullWidth}
       marginTop={marginTop}
       radius={radius}

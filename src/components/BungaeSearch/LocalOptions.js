@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { localList } from "../../@constants/constants";
+import { localList } from "../../@constants/localList";
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 
