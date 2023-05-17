@@ -11,7 +11,7 @@ const StyledRootPageContent = styled.main`
   ${({ maxWidth }) => {
     if (maxWidth === "md") {
       return css`
-        max-width: 1036px;
+        max-width: 834px;
       `;
     }
     if (maxWidth === "sm") {

@@ -47,8 +47,12 @@ a {
     color: inherit;
 }
 button {
+	font-family: "Noto Sans KR", sans-serif;
     background: transparent;
 	cursor: pointer;
+}
+textarea {
+	font-family: 'Noto Sans KR', sans-serif;
 }
 `;
 

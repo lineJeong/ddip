@@ -45,7 +45,7 @@ const StyledKeywordInput = styled.input.attrs(() => ({
   width: 100%;
   outline: none;
   border: none;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   padding: 0px;
 `;
 

@@ -3,8 +3,8 @@ import { useSearchParams } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { searchPageTabMenu as tabMenu } from "../@constants/constants";
 import { dummyBungaeList } from "../@constants/dummy";
+import { searchPageTabMenu as tabMenu } from "../@constants/sortTab";
 import LocalOptions from "../components/BungaeSearch/LocalOptions";
 import SearchedBungaeList from "../components/BungaeSearch/SearchedBungaeList";
 import SearchForm from "../components/BungaeSearch/SearchForm";

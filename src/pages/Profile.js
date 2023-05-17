@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { ProfilePagetabMenu as tabMenu } from "../@constants/constants";
 import { dummyBungaeList } from "../@constants/dummy";
+import { ProfilePageTabMenu as tabMenu } from "../@constants/sortTab";
 import RootPageContent from "../components/PageContent/RootPageContent";
 import UserBungaeList from "../components/Profile/UserBungaeList";
 import UserInfo from "../components/Profile/UserInfo";

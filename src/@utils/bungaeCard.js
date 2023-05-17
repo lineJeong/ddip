@@ -1,4 +1,4 @@
-import { bungaeStatus } from "../@constants/constants";
+import { bungaeStatus } from "../@constants/bungaeStatus";
 
 export const getMeetingTime = (meetingAt) => {
   const meetingDate = new Date(meetingAt);
