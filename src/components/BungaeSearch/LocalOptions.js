@@ -10,7 +10,7 @@ const StyledHeader = styled.h1`
   margin-bottom: 24px;
 `;
 
-const SyledLocalListWrapper = styled.div`
+const StyledLocalListWrapper = styled.div`
   display: flex;
 
   .list-title {
@@ -62,7 +62,7 @@ function LocalOptions({
     <Modal isOpen={isOpen} onClose={onClose}>
       <>
         <StyledHeader>지역 선택</StyledHeader>
-        <SyledLocalListWrapper>
+        <StyledLocalListWrapper>
           <div>
             <div className="list-title">시·도</div>
             <StyledSidoList>
@@ -93,7 +93,7 @@ function LocalOptions({
               ))}
             </SyledSigugunList>
           </div>
-        </SyledLocalListWrapper>
+        </StyledLocalListWrapper>
         <StyledButtonContainer>
           <Button background="gray3" color="white" fullWidth onClick={onReset}>
             초기화

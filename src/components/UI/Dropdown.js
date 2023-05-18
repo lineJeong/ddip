@@ -62,7 +62,6 @@ const StyledOptionList = styled.ul`
   border-radius: 5px;
   background: ${({ theme }) => theme.palette.white};
   position: absolute;
-  z-index: 10;
   width: 100%;
 
   li {

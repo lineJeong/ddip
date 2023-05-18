@@ -5,11 +5,11 @@ const useDropdown = (initialOption) => {
   const [selectedOption, setSelectedOption] = useState(initialOption);
   const ref = useRef(null);
 
-  const toggleDropdownHandler = () => {
+  const dropdownToggleHandler = () => {
     setIsOpen((prev) => !prev);
   };
 
-  const selectOptionHandler = (name, value) => {
+  const optionSelectHandler = (name, value) => {
     setSelectedOption({
       name,
       value
@@ -34,8 +34,8 @@ const useDropdown = (initialOption) => {
     ref,
     isOpen,
     selected: selectedOption,
-    onToggle: toggleDropdownHandler,
-    onSelect: selectOptionHandler
+    onToggle: dropdownToggleHandler,
+    onSelect: optionSelectHandler
   };
 };
 

@@ -1,7 +1,12 @@
 import styled, { css } from "styled-components";
 
 const StyledTextarea = styled.textarea.attrs(
-  ({ placeholder, value, onChange }) => ({ placeholder, value, onChange })
+  ({ name, placeholder, value, onChange }) => ({
+    name,
+    placeholder,
+    value,
+    onChange
+  })
 )`
   width: 100%;
   padding: 14px;
@@ -20,9 +25,10 @@ const StyledTextarea = styled.textarea.attrs(
     `}
 `;
 
-function Textarea({ placeholder, height, value, onChange }) {
+function Textarea({ name, placeholder, height, value, onChange }) {
   return (
     <StyledTextarea
+      name={name}
       placeholder={placeholder}
       height={height}
       value={value}
