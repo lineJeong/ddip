@@ -11,13 +11,14 @@ const ModalBackdrop = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 20;
 `;
 
 const ModalContents = styled.div`
   background: white;
   text-align: center;
   padding: 20px;
-  z-index: 30;
+  z-index: 20;
   border-radius: 5px;
   min-width: 20rem;
 `;
@@ -25,12 +26,12 @@ const ModalContents = styled.div`
 function Modal({ isOpen, children, onClose }) {
   if (!isOpen) return null;
 
-  const clickBackdropHandler = (e) => {
+  const backdropClickHandler = (e) => {
     if (e.target === e.currentTarget) onClose();
   };
 
   return createPortal(
-    <ModalBackdrop onClick={clickBackdropHandler}>
+    <ModalBackdrop onClick={backdropClickHandler}>
       <ModalContents>{children}</ModalContents>
     </ModalBackdrop>,
     document.body

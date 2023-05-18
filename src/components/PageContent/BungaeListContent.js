@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import * as bungaeCardUtil from "../../@utils/bungaeCard";
+import * as bungaeCardUtil from "../../@utils/bungaeInfo";
 import BungaeCard from "../BungaeCard";
 
 const StyledBungaeListContent = styled.div`

@@ -34,25 +34,25 @@ function BungaeSearchPage() {
     setBungaeList(dummyBungaeList);
   }, []);
 
-  const switchTabHandler = (selected) => {
+  const tabSwitchHandler = (selected) => {
     setSearchParams({ sort: selected });
   };
 
-  const toggleLocalOptionsHandler = () => {
+  const localOptionsToggleHandler = () => {
     setLocalOptionsIsOpen((prev) => !prev);
   };
 
-  const selectSidoHandler = (idx, text) => {
+  const sidoSelectHandler = (idx, text) => {
     setCurrentSido(idx);
     setSelectedLocal({ sido: text, sigugun: "" });
-    setCurrentSigugun((prev) => ({ ...prev, sigugun: null }));
+    setCurrentSigugun(null);
   };
-  const selectSigugunHandler = (idx, text) => {
+  const sigugunSelectHandler = (idx, text) => {
     setCurrentSigugun(idx);
     setSelectedLocal((prev) => ({ ...prev, sigugun: text }));
   };
 
-  const resetSelectionHandler = () => {
+  const resetHandler = () => {
     setCurrentSido(0);
     setCurrentSigugun(null);
     setSelectedLocal({
@@ -65,24 +65,24 @@ function BungaeSearchPage() {
     <RootPageContent>
       <StyledSection>
         <SearchForm
-          onOpen={toggleLocalOptionsHandler}
+          onOpen={localOptionsToggleHandler}
           selectedLocal={selectedLocal}
         />
         <LocalOptions
           isOpen={localOptionsIsOpen}
-          onClose={toggleLocalOptionsHandler}
+          onClose={localOptionsToggleHandler}
           currentSido={currentSido}
-          onSelectSido={selectSidoHandler}
+          onSelectSido={sidoSelectHandler}
           currentSigugun={currentSigugun}
-          onSelectSigugun={selectSigugunHandler}
-          onReset={resetSelectionHandler}
+          onSelectSigugun={sigugunSelectHandler}
+          onReset={resetHandler}
         />
       </StyledSection>
       <StyledSection>
         <SearchedBungaeList
           count={bungaeList.length}
           sortBy={sort}
-          onSwitchTab={switchTabHandler}
+          onSwitchTab={tabSwitchHandler}
           tabMenu={tabMenu}
           bungaeList={bungaeList}
         />

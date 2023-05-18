@@ -1,4 +1,5 @@
 import { bungaeStatus } from "../@constants/bungaeStatus";
+import { numberOptionList, timeOptionList } from "../@constants/dropdown";
 
 export const getMeetingTime = (meetingAt) => {
   const meetingDate = new Date(meetingAt);
@@ -46,4 +47,35 @@ export const getBungaeStatus = (createdAt, meetingAt) => {
     return bungaeStatus.imminent; // 마감임박
   }
   return bungaeStatus.recruiting; // 모집중
+};
+
+export const getInitialBungaeState = (bungaeDetail) => {
+  let initialNumberOfRecruits = { name: "1명 ~ 10명", value: null };
+  let initialMeetingTime = { name: "00:30 ~ 23:30", value: null };
+  let initialMeetingLocation = null;
+  let initialOpenChat = "";
+  let initialIntroduction = { title: "", description: "" };
+
+  if (bungaeDetail) {
+    initialNumberOfRecruits = numberOptionList.find(
+      ({ value }) => value === bungaeDetail.numberOfRecruits
+    );
+    initialMeetingTime = timeOptionList.find(
+      ({ value }) => value === getMeetingTime(bungaeDetail.meetingAt)
+    );
+    initialMeetingLocation = `${bungaeDetail.location.city} ${bungaeDetail.location.state} ${bungaeDetail.location.street} ${bungaeDetail.location.zipCode} ${bungaeDetail.location.detail}`;
+    initialOpenChat = bungaeDetail.openChat;
+    initialIntroduction = {
+      title: bungaeDetail.title,
+      description: bungaeDetail.description
+    };
+  }
+
+  return {
+    initialNumberOfRecruits,
+    initialMeetingTime,
+    initialMeetingLocation,
+    initialOpenChat,
+    initialIntroduction
+  };
 };

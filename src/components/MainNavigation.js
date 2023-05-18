@@ -15,7 +15,7 @@ const Header = styled.header`
   padding-left: 1.5rem;
   border-bottom: 1px solid black;
   background: white;
-  z-index: 20;
+  z-index: 10;
 
   > .ddip-logo {
     width: 94px;
