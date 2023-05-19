@@ -27,32 +27,34 @@ function BungaeSearchPage() {
   const [currentSigugun, setCurrentSigugun] = useState(null);
 
   const [bungaeList, setBungaeList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get("sort");
 
   useEffect(() => {
     setBungaeList(dummyBungaeList);
+    setIsLoading(false);
   }, []);
 
-  const tabSwitchHandler = (selected) => {
+  const handleSwitchTab = (selected) => {
     setSearchParams({ sort: selected });
   };
 
-  const localOptionsToggleHandler = () => {
+  const handleToggleLocalOptions = () => {
     setLocalOptionsIsOpen((prev) => !prev);
   };
 
-  const sidoSelectHandler = (idx, text) => {
+  const handleSelectSido = (idx, text) => {
     setCurrentSido(idx);
     setSelectedLocal({ sido: text, sigugun: "" });
     setCurrentSigugun(null);
   };
-  const sigugunSelectHandler = (idx, text) => {
+  const handleSelectSigugun = (idx, text) => {
     setCurrentSigugun(idx);
     setSelectedLocal((prev) => ({ ...prev, sigugun: text }));
   };
 
-  const resetHandler = () => {
+  const handleReset = () => {
     setCurrentSido(0);
     setCurrentSigugun(null);
     setSelectedLocal({
@@ -61,28 +63,30 @@ function BungaeSearchPage() {
     });
   };
 
+  if (isLoading) return;
+
   return (
     <RootPageContent>
       <StyledSection>
         <SearchForm
-          onOpen={localOptionsToggleHandler}
+          onOpen={handleToggleLocalOptions}
           selectedLocal={selectedLocal}
         />
         <LocalOptions
           isOpen={localOptionsIsOpen}
-          onClose={localOptionsToggleHandler}
+          onClose={handleToggleLocalOptions}
           currentSido={currentSido}
-          onSelectSido={sidoSelectHandler}
+          onSelectSido={handleSelectSido}
           currentSigugun={currentSigugun}
-          onSelectSigugun={sigugunSelectHandler}
-          onReset={resetHandler}
+          onSelectSigugun={handleSelectSigugun}
+          onReset={handleReset}
         />
       </StyledSection>
       <StyledSection>
         <SearchedBungaeList
           count={bungaeList.length}
           sortBy={sort}
-          onSwitchTab={tabSwitchHandler}
+          onSwitchTab={handleSwitchTab}
           tabMenu={tabMenu}
           bungaeList={bungaeList}
         />

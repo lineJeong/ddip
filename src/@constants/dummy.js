@@ -8,7 +8,8 @@ export const dummyBungaeDetail = {
     nickname: "닉네임입니다"
   },
   title: "오늘 7시 성수역 클라이밍 하실 분 계신가요!!...",
-  description: "설명",
+  description:
+    "오늘 7시 성수역 클라이밍 하실 분 계신가요!!...오늘 7시 성수역 클라이밍 하실 분 계신가요!!...오늘 7시 성수역 클라이밍 하실 분 계신가요!!...오늘 7시 성수역 클라이밍 하실 분 계신가요!!...오늘 7시 성수역 클라이밍 하실 분 계신가요!!...오늘 7시 성수역 클라이밍 하실 분 계신가요!!...",
   location: {
     country: "한국",
     city: "서울",
@@ -18,8 +19,8 @@ export const dummyBungaeDetail = {
     detail: "303호"
   },
   openChat: "http://localhost:3000/", // 필요
-  createdAt: "2023-05-17T00:00:00",
-  meetingAt: "2023-05-17T18:00:00",
+  createdAt: "2023-05-18T15:10:00",
+  meetingAt: "2023-05-18T18:00:00",
   numberOfParticipants: 2,
   numberOfRecruits: 4
 };

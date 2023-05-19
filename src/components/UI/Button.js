@@ -12,11 +12,11 @@ const colorStyles = css`
 `;
 
 const sizes = {
-  lg: {
-    height: "3rem",
-    fontSize: "1.25rem"
-  },
   md: {
+    height: "3rem",
+    fontSize: "1.125rem"
+  },
+  base: {
     height: "2.875rem",
     fontSize: "1rem"
   },
@@ -78,6 +78,13 @@ const StyledButton = styled.button.attrs(({ onClick }) => {
       border: 1px solid black;
     `}
 
+    ${({ basic }) =>
+    basic &&
+    css`
+      height: auto;
+      padding: 0;
+    `}
+
   ${fullWidthStyle}
 
   > div:first-child {
@@ -101,7 +108,7 @@ function Button({
   children,
   background,
   color,
-  size = "md",
+  size = "base",
   outline,
   fullWidth,
   marginTop,
@@ -109,6 +116,7 @@ function Button({
   iconWidth,
   iconHeight,
   iconWithText,
+  basic,
   onClick
 }) {
   return (
@@ -123,6 +131,7 @@ function Button({
       iconWidth={iconWidth}
       iconHeight={iconHeight}
       iconWithText={iconWithText}
+      basic={basic}
       onClick={onClick}
     >
       {children}

@@ -1,16 +1,20 @@
 import { bungaeStatus } from "../@constants/bungaeStatus";
 import { numberOptionList, timeOptionList } from "../@constants/dropdown";
 
+const padStartWithZero = (number) => {
+  return String(number).padStart(2, "0");
+};
+
 export const getMeetingTime = (meetingAt) => {
   const meetingDate = new Date(meetingAt);
-  const hours = String(meetingDate.getHours()).padStart(2, "0");
-  const minutes = String(meetingDate.getMinutes()).padStart(2, "0");
+  const hours = padStartWithZero(meetingDate.getHours());
+  const minutes = padStartWithZero(meetingDate.getMinutes());
   return `${hours}:${minutes}`;
 };
 
-const getDuration = (dateString) => {
+const getDuration = (meetingAt) => {
   const currentDate = new Date();
-  const comparedDate = new Date(dateString);
+  const comparedDate = new Date(meetingAt);
   const duration = comparedDate.getTime() - currentDate.getTime();
   return duration;
 };
@@ -26,9 +30,9 @@ export const getBungaeDuration = (meetingAt) => {
   const minInMs = Math.floor(secInMs / 60);
   const hourInMs = Math.floor(minInMs / 60);
 
-  const seconds = String(secInMs % 60).padStart(2, "0");
-  const minutes = String(minInMs % 60).padStart(2, "0");
-  const hours = String(hourInMs % 24).padStart(2, "0");
+  const seconds = padStartWithZero(secInMs % 60);
+  const minutes = padStartWithZero(minInMs % 60);
+  const hours = padStartWithZero(hourInMs % 24);
 
   return `${hours}:${minutes}:${seconds}`;
 };
@@ -49,6 +53,10 @@ export const getBungaeStatus = (createdAt, meetingAt) => {
   return bungaeStatus.recruiting; // 모집중
 };
 
+export const getMeetingLocation = (location) => {
+  return `${location.city} ${location.state} ${location.street} ${location.zipCode} ${location.detail}`;
+};
+
 export const getInitialBungaeState = (bungaeDetail) => {
   let initialNumberOfRecruits = { name: "1명 ~ 10명", value: null };
   let initialMeetingTime = { name: "00:30 ~ 23:30", value: null };
@@ -57,17 +65,26 @@ export const getInitialBungaeState = (bungaeDetail) => {
   let initialIntroduction = { title: "", description: "" };
 
   if (bungaeDetail) {
+    const {
+      numberOfRecruits,
+      meetingAt,
+      location,
+      openChat,
+      title,
+      description
+    } = bungaeDetail;
+
     initialNumberOfRecruits = numberOptionList.find(
-      ({ value }) => value === bungaeDetail.numberOfRecruits
+      ({ value }) => value === numberOfRecruits
     );
     initialMeetingTime = timeOptionList.find(
-      ({ value }) => value === getMeetingTime(bungaeDetail.meetingAt)
+      ({ value }) => value === getMeetingTime(meetingAt)
     );
-    initialMeetingLocation = `${bungaeDetail.location.city} ${bungaeDetail.location.state} ${bungaeDetail.location.street} ${bungaeDetail.location.zipCode} ${bungaeDetail.location.detail}`;
-    initialOpenChat = bungaeDetail.openChat;
+    initialMeetingLocation = getMeetingLocation(location);
+    initialOpenChat = openChat;
     initialIntroduction = {
-      title: bungaeDetail.title,
-      description: bungaeDetail.description
+      title: title,
+      description: description
     };
   }
 
@@ -78,4 +95,12 @@ export const getInitialBungaeState = (bungaeDetail) => {
     initialOpenChat,
     initialIntroduction
   };
+};
+
+export const getCreatedDate = (createdAt) => {
+  const createdDate = new Date(createdAt);
+  const year = createdDate.getFullYear();
+  const month = padStartWithZero(createdDate.getMonth() + 1);
+  const date = padStartWithZero(createdDate.getDate());
+  return `${year}.${month}.${date}`;
 };
