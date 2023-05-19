@@ -17,7 +17,7 @@ function ProfilePage() {
     setBungaeList(dummyBungaeList);
   }, []);
 
-  const tabSwitchHandler = (selected) => {
+  const handleSwitchTab = (selected) => {
     navigate(selected);
   };
 
@@ -26,7 +26,7 @@ function ProfilePage() {
       <UserInfo emoji="😶‍🌫️" nickname={nickname} email="test@test.com" />
       <UserBungaeList
         sortBy={pathname}
-        onSwitchTab={tabSwitchHandler}
+        onSwitchTab={handleSwitchTab}
         tabMenu={tabMenu}
         bungaeList={bungaeList}
       />

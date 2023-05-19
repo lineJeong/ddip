@@ -26,12 +26,12 @@ const ModalContents = styled.div`
 function Modal({ isOpen, children, onClose }) {
   if (!isOpen) return null;
 
-  const backdropClickHandler = (e) => {
+  const handleClickBackdrop = (e) => {
     if (e.target === e.currentTarget) onClose();
   };
 
   return createPortal(
-    <ModalBackdrop onClick={backdropClickHandler}>
+    <ModalBackdrop onClick={handleClickBackdrop}>
       <ModalContents>{children}</ModalContents>
     </ModalBackdrop>,
     document.body

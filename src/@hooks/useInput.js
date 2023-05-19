@@ -3,7 +3,7 @@ import { useState } from "react";
 function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
 
-  const inputChangeHandler = (event) => {
+  const handleChangeInput = (event) => {
     if (typeof initialValue === "object") {
       const { name, value } = event.target;
       setValue((prev) => ({ ...prev, [name]: value }));
@@ -11,11 +11,11 @@ function useInput(initialValue) {
       setValue(event.target.value);
     }
   };
-  const resetHandler = () => {
+  const handleReset = () => {
     setValue(initialValue);
   };
 
-  return { value, onChange: inputChangeHandler, onReset: resetHandler };
+  return { value, onChange: handleChangeInput, onReset: handleReset };
 }
 
 export default useInput;

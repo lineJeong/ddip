@@ -102,6 +102,7 @@ const StyledBungaeCard = styled.li`
 `;
 
 function BungaeCard({
+  id,
   status,
   place,
   time,
@@ -113,7 +114,7 @@ function BungaeCard({
   duration = "00:00:00"
 }) {
   return (
-    <Link>
+    <Link to={`/bungae/${id}`}>
       <StyledBungaeCard statusColor={status.color} statusText={status.text}>
         <div className="status">{status.text}</div>
         <div className="place">
