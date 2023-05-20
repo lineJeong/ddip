@@ -42,9 +42,10 @@ const fullWidthStyle = css`
     `}
 `;
 
-const StyledButton = styled.button.attrs(({ onClick }) => {
-  onClick;
-})`
+const StyledButton = styled.button.attrs(({ onClick, disabled }) => ({
+  onClick,
+  disabled
+}))`
   display: inline-flex;
   align-items: center;
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
@@ -117,7 +118,8 @@ function Button({
   iconHeight,
   iconWithText,
   basic,
-  onClick
+  onClick,
+  disabled
 }) {
   return (
     <StyledButton
@@ -133,6 +135,7 @@ function Button({
       iconWithText={iconWithText}
       basic={basic}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </StyledButton>
