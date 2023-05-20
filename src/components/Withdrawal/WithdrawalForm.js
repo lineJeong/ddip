@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import Button from "../UI/Button";
-import ErrorMsg from "../UI/ErrorMsg";
 import Input from "../UI/Input";
+import ValidMessage from "../UI/ValidMessage";
 
 const StyledParagraph = styled.p`
   margin-bottom: 30px;
@@ -24,7 +24,7 @@ function WithdrawalForm() {
       </StyledParagraph>
       <Input type="email" placeholder="이메일" radius="top" disabled />
       <Input type="password" placeholder="비밀번호" radius="bottom" />
-      <ErrorMsg hasError>비밀번호를 입력해주세요.</ErrorMsg>
+      <ValidMessage hasValidMessage>비밀번호를 입력해주세요.</ValidMessage>
       <StyledButtonContainer>
         <Button background="white" outline fullWidth>
           취소

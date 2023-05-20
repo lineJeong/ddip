@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import Button from "../UI/Button";
-import ErrorMsg from "../UI/ErrorMsg";
 import InputWithLabel from "../UI/InputWithLabel";
+import ValidMessage from "../UI/ValidMessage";
 
 const StyledModifyNicknameForm = styled.section`
   width: 100%;
@@ -22,7 +22,7 @@ function ModifyNicknameForm({ value, onChange }) {
       <Button background="white" radius="bottom" size="sm" outline fullWidth>
         닉네임 중복 확인
       </Button>
-      <ErrorMsg hasError>닉네임을 입력해주세요.</ErrorMsg>
+      <ValidMessage hasValidMessage>닉네임을 입력해주세요.</ValidMessage>
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         닉네임 변경하기
       </Button>
