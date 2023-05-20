@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 
 const useDropdown = (initialOption) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(initialOption);
+  const [selected, setSelected] = useState(initialOption);
   const ref = useRef(null);
 
   const handleToggleDropdown = () => {
@@ -10,7 +10,7 @@ const useDropdown = (initialOption) => {
   };
 
   const handleSelectOption = (name, value) => {
-    setSelectedOption({
+    setSelected({
       name,
       value
     });
@@ -33,9 +33,9 @@ const useDropdown = (initialOption) => {
   return {
     ref,
     isOpen,
-    selected: selectedOption,
-    onToggle: handleToggleDropdown,
-    onSelect: handleSelectOption
+    selected,
+    handleToggleDropdown,
+    handleSelectOption
   };
 };
 

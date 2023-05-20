@@ -46,23 +46,23 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
 
   const {
     ref: numberDropdownRef,
-    isOpen: numberDropdownIsOpen,
+    isOpen: isNumberDropdownOpen,
     selected: selectedNumberOption,
-    onToggle: onToggleNumberDropdown,
-    onSelect: onSelectNumberOption
+    handleToggleDropdown: handleToggleNumberDropdown,
+    handleSelectOption: handleSelectNumberOption
   } = useDropdown(initialNumberOfRecruits);
   const {
     ref: timeDropdownRef,
-    isOpen: timeDropdownIsOpen,
+    isOpen: isTimeDropdownOpen,
     selected: selectedTimeOption,
-    onToggle: onToggleTimeDropdown,
-    onSelect: onSelectTimeOption
+    handleToggleDropdown: handleToggleTimeDropdown,
+    handleSelectOption: handleSelectTimeOption
   } = useDropdown(initialMeetingTime);
 
   const [meetingLocation] = useState(initialMeetingLocation);
-  const { value: openChat, onChange: onChangeOpenChat } =
+  const { value: openChat, handleChangeInput: handleChangeOpenChat } =
     useInput(initialOpenChat);
-  const { value: introduction, onChange: onChangeIntroduction } =
+  const { value: introduction, handleChangeInput: handleChangeIntroduction } =
     useInput(initialIntroduction);
 
   const handleSubmitBungae = () => {
@@ -77,19 +77,19 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
         <Dropdown
           label="모집 인원"
           ref={numberDropdownRef}
-          isOpen={numberDropdownIsOpen}
+          isOpen={isNumberDropdownOpen}
           selected={selectedNumberOption}
-          onToggle={onToggleNumberDropdown}
-          onSelect={onSelectNumberOption}
+          onToggle={handleToggleNumberDropdown}
+          onSelect={handleSelectNumberOption}
           options={numberOptionList}
         />
         <Dropdown
           label="모임 시간"
           ref={timeDropdownRef}
-          isOpen={timeDropdownIsOpen}
+          isOpen={isTimeDropdownOpen}
           selected={selectedTimeOption}
-          onToggle={onToggleTimeDropdown}
-          onSelect={onSelectTimeOption}
+          onToggle={handleToggleTimeDropdown}
+          onSelect={handleSelectTimeOption}
           options={timeOptionList}
         />
       </StyledDropdownContainer>
@@ -104,7 +104,7 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
           fontSize="base"
           height="46px"
           value={openChat}
-          onChange={onChangeOpenChat}
+          onChange={handleChangeOpenChat}
         />
       </StyledMarginWrapper>
       <StyledNarrowMarginWrapper>
@@ -116,7 +116,7 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
           fontSize="base"
           height="46px"
           value={introduction.title}
-          onChange={onChangeIntroduction}
+          onChange={handleChangeIntroduction}
         />
       </StyledNarrowMarginWrapper>
       <StyledNarrowMarginWrapper>
@@ -125,7 +125,7 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
           placeholder="번개 모임에 대해 소개해주세요"
           height="340px"
           value={introduction.description}
-          onChange={onChangeIntroduction}
+          onChange={handleChangeIntroduction}
         />
       </StyledNarrowMarginWrapper>
       <StyledButtonContainer>

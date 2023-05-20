@@ -4,7 +4,11 @@ function useInput(initialValue) {
   const [value, setValue] = useState(initialValue);
 
   const handleChangeInput = (event) => {
-    if (typeof initialValue === "object") {
+    if (
+      typeof initialValue === "object" &&
+      !Array.isArray(initialValue) &&
+      initialValue !== null
+    ) {
       const { name, value } = event.target;
       setValue((prev) => ({ ...prev, [name]: value }));
     } else {
@@ -15,7 +19,7 @@ function useInput(initialValue) {
     setValue(initialValue);
   };
 
-  return { value, onChange: handleChangeInput, onReset: handleReset };
+  return { value, handleChangeInput, handleReset };
 }
 
 export default useInput;
