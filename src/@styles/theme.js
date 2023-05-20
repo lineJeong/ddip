@@ -32,7 +32,8 @@ const palette = {
   statusYellow: "#FFAE34",
   statusGreen: "#539165",
   statusGray: "#555555",
-  errorRed: "#E64138"
+  errorRed: "#E64138",
+  successGreen: "#539165"
 };
 
 const theme = { fontSize, fontWeight, palette };

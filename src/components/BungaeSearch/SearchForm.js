@@ -62,7 +62,7 @@ const StyledSearchButton = styled.button`
 
 function SearchForm({ onOpen, selectedLocal }) {
   const { sido, sigugun } = selectedLocal;
-  const localIsSelected = sido !== "" && sigugun !== "";
+  const islocalSelected = sido !== "" && sigugun !== "";
 
   return (
     <StyledSearchForm>
@@ -76,7 +76,7 @@ function SearchForm({ onOpen, selectedLocal }) {
         <div className="image-wrapper">
           <img src="/images/map.svg" alt="map marker" />
         </div>
-        {localIsSelected ? (
+        {islocalSelected ? (
           <p className="selected">{`${sido} ${sigugun}`}</p>
         ) : (
           <p>지역을 선택해주세요</p>

@@ -22,7 +22,7 @@ function BungaeSearchPage() {
     sido: "",
     sigugun: ""
   });
-  const [localOptionsIsOpen, setLocalOptionsIsOpen] = useState(false);
+  const [isLocalOptionsOpen, setIsLocalOptionsOpen] = useState(false);
   const [currentSido, setCurrentSido] = useState(0);
   const [currentSigugun, setCurrentSigugun] = useState(null);
 
@@ -41,7 +41,7 @@ function BungaeSearchPage() {
   };
 
   const handleToggleLocalOptions = () => {
-    setLocalOptionsIsOpen((prev) => !prev);
+    setIsLocalOptionsOpen((prev) => !prev);
   };
 
   const handleSelectSido = (idx, text) => {
@@ -73,7 +73,7 @@ function BungaeSearchPage() {
           selectedLocal={selectedLocal}
         />
         <LocalOptions
-          isOpen={localOptionsIsOpen}
+          isOpen={isLocalOptionsOpen}
           onClose={handleToggleLocalOptions}
           currentSido={currentSido}
           onSelectSido={handleSelectSido}
