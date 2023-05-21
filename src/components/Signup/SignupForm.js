@@ -26,7 +26,7 @@ function SignupForm() {
     errorMessage: emailErrorMessage,
     handleChangeInput: handleChangeEmail,
     handleBlurInput: handleBlurEmail
-  } = useValidInput(validationUtil.isValidEmail);
+  } = useValidInput(validationUtil.validateEmail);
   const {
     value: nickname,
     isValid: isNicknameValid,
@@ -34,7 +34,7 @@ function SignupForm() {
     errorMessage: nicknameErrorMessage,
     handleChangeInput: handleChangeNickname,
     handleBlurInput: handleBlurNickname
-  } = useValidInput(validationUtil.isValidNickname);
+  } = useValidInput(validationUtil.validateNickname);
   const {
     value: password,
     isValid: isPasswordValid,
@@ -42,7 +42,7 @@ function SignupForm() {
     errorMessage: passwordErrorMessage,
     handleChangeInput: handleChangePassword,
     handleBlurInput: handleBlurPassword
-  } = useValidInput(validationUtil.isValidPassword);
+  } = useValidInput(validationUtil.validatePassword);
   const {
     value: confirmPassword,
     isValid: isConfirmPasswordValid,
@@ -50,7 +50,9 @@ function SignupForm() {
     errorMessage: confirmPasswordErrorMessage,
     handleChangeInput: handleChangeConfirmPassword,
     handleBlurInput: handleBlurConfirmPassword
-  } = useValidInput(validationUtil.isValidConfirmPassword.bind(null, password));
+  } = useValidInput(
+    validationUtil.validateConfirmPassword.bind(null, password)
+  );
 
   const {
     isNicknameUnique,
@@ -60,10 +62,8 @@ function SignupForm() {
     isLoading: isNicknameLoading
   } = useUniqueNickname(nickname, isNicknameValid);
 
-  const combinedPasswordErrorMessage = validationUtil.combineTwoErrorMessage(
-    hasPasswordError,
+  const combinedPasswordErrorMessage = validationUtil.combineErrorMessages(
     passwordErrorMessage,
-    hasConfirmPasswordError,
     confirmPasswordErrorMessage
   );
 

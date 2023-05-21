@@ -6,7 +6,7 @@ const useValidInput = (validate, defaultValue = "") => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const errorMsg = validate(value);
-  const isValid = errorMsg.length === 0;
+  const isValid = errorMsg.trim() === "";
   const hasError = !isValid && isTouched;
 
   useEffect(() => {

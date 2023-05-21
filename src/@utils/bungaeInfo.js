@@ -78,7 +78,7 @@ export const getInitialBungaeState = (bungaeDetail) => {
       ({ value }) => value === numberOfRecruits
     );
     initialMeetingTime = timeOptionList.find(
-      ({ value }) => value === getMeetingTime(meetingAt)
+      ({ name }) => name === getMeetingTime(meetingAt)
     );
     initialMeetingLocation = getMeetingLocation(location);
     initialOpenChat = openChat;
@@ -97,10 +97,20 @@ export const getInitialBungaeState = (bungaeDetail) => {
   };
 };
 
-export const getCreatedDate = (createdAt) => {
-  const createdDate = new Date(createdAt);
-  const year = createdDate.getFullYear();
-  const month = padStartWithZero(createdDate.getMonth() + 1);
-  const date = padStartWithZero(createdDate.getDate());
-  return `${year}.${month}.${date}`;
+export const getCurrentDate = (isoDateString) => {
+  const date = isoDateString ? new Date(isoDateString) : new Date();
+  const year = date.getFullYear();
+  const month = padStartWithZero(date.getMonth() + 1);
+  const day = padStartWithZero(date.getDate());
+
+  return `${year}-${month}-${day}`;
+};
+
+export const getCombinedDateTimeString = (time) => {
+  const currentDate = getCurrentDate();
+  return `${currentDate}T${time}`;
+};
+
+export const getFormattedCreationDate = (createdAt) => {
+  return getCurrentDate(createdAt);
 };

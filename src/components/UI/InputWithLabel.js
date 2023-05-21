@@ -28,7 +28,8 @@ function InputWithLabel({
   disabled,
   radius = "default",
   height,
-  fontSize
+  fontSize,
+  defaultValue
 }) {
   return (
     <StyledInputWithLabel fontSize={fontSize}>
@@ -47,6 +48,7 @@ function InputWithLabel({
         radius={radius}
         height={height}
         fontSize={fontSize}
+        defaultValue={defaultValue}
       />
     </StyledInputWithLabel>
   );

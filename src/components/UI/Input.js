@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const StyledInput = styled.input.attrs(
-  ({ id, name, type, placeholder, value, onChange, onBlur, disabled }) => ({
+  ({
     id,
     name,
     type,
@@ -9,7 +9,18 @@ const StyledInput = styled.input.attrs(
     value,
     onChange,
     onBlur,
-    disabled
+    disabled,
+    defaultValue
+  }) => ({
+    id,
+    name,
+    type,
+    placeholder,
+    value,
+    onChange,
+    onBlur,
+    disabled,
+    defaultValue
   })
 )`
   width: 100%;
@@ -62,7 +73,8 @@ function Input({
   disabled,
   radius = "default",
   height,
-  fontSize
+  fontSize,
+  defaultValue
 }) {
   return (
     <StyledInput
@@ -77,6 +89,7 @@ function Input({
       radius={radius}
       height={height}
       fontSize={fontSize}
+      defaultValue={defaultValue}
     ></StyledInput>
   );
 }
