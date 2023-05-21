@@ -107,7 +107,7 @@ function BungaeDetail({ bungaeDetail }) {
 
   const meetingLoacation = bungaeInfoUtil.getMeetingLocation(location);
   const meetingTime = bungaeInfoUtil.getMeetingTime(meetingAt);
-  const createdDate = bungaeInfoUtil.getCreatedDate(createdAt);
+  const createdDate = bungaeInfoUtil.getFormattedCreationDate(createdAt);
 
   const handleClickEdit = () => {
     navigate(`/bungae/${id}/edit`, { state: { ...bungaeDetail } });

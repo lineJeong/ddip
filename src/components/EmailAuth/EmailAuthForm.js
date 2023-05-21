@@ -1,25 +1,40 @@
-import { useLocation } from "react-router-dom";
-
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import ValidMessage from "../UI/ValidMessage";
 
-function EmailAuthForm() {
-  const { state } = useLocation();
-  console.log(state);
-
+function EmailAuthForm({
+  email,
+  handleSubmit,
+  value,
+  hasError,
+  errorMessage,
+  handleChangeInput,
+  handleBlurInput
+}) {
   return (
     <>
       <Input
         type="email"
         placeholder="이메일"
         radius="top"
-        defaultValue={state.email}
+        defaultValue={email}
         disabled
       />
-      <Input placeholder="인증번호" radius="bottom" />
-      <ValidMessage hasValidMessage>인증번호를 입력해주세요.</ValidMessage>
-      <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
+      <Input
+        placeholder="인증번호"
+        radius="bottom"
+        value={value}
+        onChange={handleChangeInput}
+        onBlur={handleBlurInput}
+      />
+      <ValidMessage hasValidMessage={hasError}>{errorMessage}</ValidMessage>
+      <Button
+        onClick={handleSubmit}
+        background="mainViolet"
+        color="white"
+        marginTop="16px"
+        fullWidth
+      >
         회원 가입 완료
       </Button>
     </>
