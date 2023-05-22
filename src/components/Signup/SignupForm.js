@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-import useAxios from "../../@hooks/useAxios";
+import * as authAPI from "../../@api/authAPI";
 import useUniqueNickname from "../../@hooks/useUniqueNickname";
-import useValidInput from "../../@hooks/useValidInput";
-import * as validationUtil from "../../@utils/validation";
+import useValidatedInputWithBlur from "../../@hooks/useValidatedInputWithBlur";
+import * as validationUtils from "../../@utils/validationUtils";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import InputWithLabel from "../UI/InputWithLabel";
@@ -26,7 +26,7 @@ function SignupForm() {
     errorMessage: emailErrorMessage,
     handleChangeInput: handleChangeEmail,
     handleBlurInput: handleBlurEmail
-  } = useValidInput(validationUtil.validateEmail);
+  } = useValidatedInputWithBlur(validationUtils.validateEmail);
   const {
     value: nickname,
     isValid: isNicknameValid,
@@ -34,7 +34,7 @@ function SignupForm() {
     errorMessage: nicknameErrorMessage,
     handleChangeInput: handleChangeNickname,
     handleBlurInput: handleBlurNickname
-  } = useValidInput(validationUtil.validateNickname);
+  } = useValidatedInputWithBlur(validationUtils.validateNickname);
   const {
     value: password,
     isValid: isPasswordValid,
@@ -42,7 +42,7 @@ function SignupForm() {
     errorMessage: passwordErrorMessage,
     handleChangeInput: handleChangePassword,
     handleBlurInput: handleBlurPassword
-  } = useValidInput(validationUtil.validatePassword);
+  } = useValidatedInputWithBlur(validationUtils.validatePassword);
   const {
     value: confirmPassword,
     isValid: isConfirmPasswordValid,
@@ -50,8 +50,8 @@ function SignupForm() {
     errorMessage: confirmPasswordErrorMessage,
     handleChangeInput: handleChangeConfirmPassword,
     handleBlurInput: handleBlurConfirmPassword
-  } = useValidInput(
-    validationUtil.validateConfirmPassword.bind(null, password)
+  } = useValidatedInputWithBlur(
+    validationUtils.validateConfirmPassword.bind(null, password)
   );
 
   const {
@@ -62,7 +62,7 @@ function SignupForm() {
     isLoading: isNicknameLoading
   } = useUniqueNickname(nickname, isNicknameValid);
 
-  const combinedPasswordErrorMessage = validationUtil.combineErrorMessages(
+  const combinedPasswordErrorMessage = validationUtils.combineErrorMessages(
     passwordErrorMessage,
     confirmPasswordErrorMessage
   );
@@ -78,29 +78,30 @@ function SignupForm() {
     isFormValid = true;
   }
 
-  const onSuccess = () => {
-    navigate("/email-auth", {
-      state: { email, isEmailValid }
-    });
-  };
-
-  const { error, isLoading, sendRequest } = useAxios(onSuccess);
-
   // 추후 이모지도 랜덤으로 전송해야 함!!
-  const handleSubmit = () => {
-    if (!isFormValid || isLoading) return;
+  const handleSubmitSignup = async () => {
+    if (!isFormValid) {
+      handleBlurEmail();
+      handleBlurNickname();
+      handleBlurPassword();
+      handleBlurConfirmPassword();
+      return;
+    }
 
-    const config = {
-      method: "POST",
-      url: "/auth/signup",
-      data: {
-        email,
-        nickname,
-        password
-      }
+    const requestData = {
+      email,
+      nickname,
+      password
     };
-    sendRequest(config);
-    console.error(error);
+
+    try {
+      await authAPI.signup(requestData);
+      navigate("/email-auth", {
+        state: { email, isEmailValid }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -179,8 +180,7 @@ function SignupForm() {
       <Button
         background="mainViolet"
         color="white"
-        onClick={handleSubmit}
-        disabled={!isFormValid || isLoading}
+        onClick={handleSubmitSignup}
         fullWidth
       >
         이메일 인증하러 가기

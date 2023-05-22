@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import useAxios from "../@hooks/useAxios";
-import useValidInput from "../@hooks/useValidInput";
-import * as validationUtil from "../@utils/validation";
+import * as authAPI from "../@api/authAPI";
+import useValidatedInputWithBlur from "../@hooks/useValidatedInputWithBlur";
+import * as validationUtils from "../@utils/validationUtils";
 import EmailAuthForm from "../components/EmailAuth/EmailAuthForm";
 import HeadingPageContent from "../components/PageContent/HeadingPageContent";
 import RootPageContent from "../components/PageContent/RootPageContent";
@@ -11,8 +11,8 @@ function EmailAuthPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const authNumberInput = useValidInput(
-    validationUtil.validateNotEmpty.bind(null, "인증번호")
+  const authNumberInput = useValidatedInputWithBlur(
+    validationUtils.validateNotEmpty.bind(null, "인증번호")
   );
 
   let isFormValid = false;
@@ -20,34 +20,26 @@ function EmailAuthPage() {
     isFormValid = true;
   }
 
-  const onSuccess = () => {
-    window.alert("회원가입이 완료되었습니다.");
-    navigate("/login");
-  };
-  const onError = () => {
-    window.alert("이메일 또는 인증번호가 올바르지 않습니다.");
-  };
-
-  const { error, isLoading, sendRequest } = useAxios(onSuccess, onError);
-
-  // 추후 이모지도 랜덤으로 전송해야 함!!
-  const handleSubmit = () => {
-    if (isLoading) return;
+  // 추후 이모지도 랜덤으로 전송해야 함!! 회원가입 때 혹은 이메일 인증 시!!
+  const handleSubmitAuthNumber = async () => {
     if (!isFormValid) {
       authNumberInput.handleBlurInput();
       return;
     }
 
-    const config = {
-      method: "PATCH",
-      url: "/auth/confirm",
-      data: {
-        email: state.email,
-        authNumber: authNumberInput.value
-      }
+    const requestData = {
+      email: state.email,
+      authNumber: authNumberInput.value
     };
-    sendRequest(config);
-    console.error(error);
+
+    try {
+      authAPI.confirmAuthNumber(requestData);
+      window.alert("회원가입이 완료되었습니다.");
+      navigate("/login");
+    } catch (error) {
+      window.alert("이메일 또는 인증번호가 올바르지 않습니다.");
+      console.error(error);
+    }
   };
 
   return (
@@ -55,7 +47,7 @@ function EmailAuthPage() {
       <HeadingPageContent heading="이메일 인증">
         <EmailAuthForm
           email={state.email}
-          handleSubmit={handleSubmit}
+          handleSubmit={handleSubmitAuthNumber}
           {...authNumberInput}
         />
       </HeadingPageContent>

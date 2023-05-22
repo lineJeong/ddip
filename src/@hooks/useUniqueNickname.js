@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import useAxios from "./useAxios";
+import * as authAPI from "../@api/authAPI";
 
 function useUniqueNickname(nickname, isNicknameValid) {
   const [isNicknameUnique, setIsNicknameUnique] = useState(null);
@@ -21,32 +21,23 @@ function useUniqueNickname(nickname, isNicknameValid) {
     }
   }, [isNicknameUnique]);
 
-  const onSuccess = () => {
-    setIsNicknameUnique(false);
-  };
-  const onError = (error) => {
-    setIsNicknameUnique(true);
-    console.error(error);
-  };
-
-  const { sendRequest, isLoading } = useAxios(onSuccess, onError);
-
   const handleCheckNickname = async () => {
-    if (!isNicknameValid || isLoading) return;
+    if (!isNicknameValid) return;
 
-    const config = {
-      method: "GET",
-      url: `/auth/users?nickname=${nickname}`
-    };
-    sendRequest(config);
+    try {
+      await authAPI.validateNickname(nickname);
+      setIsNicknameUnique(false);
+    } catch (error) {
+      setIsNicknameUnique(true);
+      console.error(error);
+    }
   };
 
   return {
     isNicknameUnique,
     validMessage,
     hasValidMessage,
-    handleCheckNickname,
-    isLoading
+    handleCheckNickname
   };
 }
 
