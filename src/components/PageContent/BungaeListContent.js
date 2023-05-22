@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import * as bungaeInfoUtil from "../../@utils/bungaeInfo";
+import * as bungaeInfoUtils from "../../@utils/bungaeInfoUtils";
 import BungaeCard from "../BungaeCard";
 
 const StyledBungaeListContent = styled.div`
@@ -38,10 +38,13 @@ function BungaeListContent({ bungaeList }) {
             numberOfParticipants,
             numberOfRecruits
           }) => {
-            const status = bungaeInfoUtil.getBungaeStatus(createdAt, meetingAt);
+            const status = bungaeInfoUtils.getBungaeStatus(
+              createdAt,
+              meetingAt
+            );
             const place = location.city + " " + location.state;
-            const time = bungaeInfoUtil.getMeetingTime(meetingAt);
-            const duration = bungaeInfoUtil.getBungaeDuration(meetingAt);
+            const time = bungaeInfoUtils.getMeetingTime(meetingAt);
+            const duration = bungaeInfoUtils.getBungaeDuration(meetingAt);
             return (
               <BungaeCard
                 key={id}

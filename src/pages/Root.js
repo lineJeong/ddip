@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import styled from "styled-components";
 
+import { useAuthValue } from "../@store/use-auth";
 import MainNavigation from "../components/MainNavigation";
 
 const StyledRootLayout = styled.div`
@@ -13,8 +14,8 @@ const StyledRootLayout = styled.div`
 
 function RootLayout() {
   const { pathname } = useLocation();
+  const { isLoggedIn } = useAuthValue();
 
-  // logoOnly, noSearchBox, loggedIn
   let logoOnly = false;
   let noSearchBox = false;
 
@@ -35,7 +36,11 @@ function RootLayout() {
 
   return (
     <StyledRootLayout background={background}>
-      <MainNavigation logoOnly={logoOnly} noSearchBox={noSearchBox} />
+      <MainNavigation
+        logoOnly={logoOnly}
+        noSearchBox={noSearchBox}
+        isLoggedIn={isLoggedIn}
+      />
       <Outlet />
     </StyledRootLayout>
   );

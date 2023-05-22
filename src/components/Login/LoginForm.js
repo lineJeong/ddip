@@ -1,17 +1,60 @@
+import styled from "styled-components";
+
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import ValidMessage from "../UI/ValidMessage";
 
-function LoginForm() {
+const StyledLoginForm = styled.form.attrs(({ onSubmit }) => ({ onSubmit }))`
+  width: 100%;
+`;
+
+function LoginForm({
+  email,
+  password,
+  handleChangeEmail,
+  handleChangePassword,
+  handleSubmitLogin,
+  showErrorMessage,
+  errorMessage,
+  serverErrorMessage
+}) {
   return (
     <>
-      <Input type="email" placeholder="이메일" radius="top" />
-      <Input type="password" placeholder="비밀번호" radius="bottom" />
-      <ValidMessage hasValidMessage>이메일을 입력해주세요.</ValidMessage>
-      <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
-        로그인
-      </Button>
+      <StyledLoginForm onSubmit={handleSubmitLogin}>
+        <Input
+          name="email"
+          type="email"
+          placeholder="이메일"
+          radius="top"
+          value={email}
+          onChange={handleChangeEmail}
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          radius="bottom"
+          value={password}
+          onChange={handleChangePassword}
+          autocomplete="current-password"
+        />
+        <ValidMessage hasValidMessage={showErrorMessage}>
+          {errorMessage}
+        </ValidMessage>
+        <ValidMessage hasValidMessage={!!serverErrorMessage}>
+          {serverErrorMessage}
+        </ValidMessage>
+        <Button
+          background="mainViolet"
+          color="white"
+          marginTop="16px"
+          fullWidth
+        >
+          로그인
+        </Button>
+      </StyledLoginForm>
       <Button
+        type="button"
         background="white"
         color="black"
         marginTop="8px"

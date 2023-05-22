@@ -29,7 +29,8 @@ function InputWithLabel({
   radius = "default",
   height,
   fontSize,
-  defaultValue
+  defaultValue,
+  autocomplete
 }) {
   return (
     <StyledInputWithLabel fontSize={fontSize}>
@@ -49,6 +50,7 @@ function InputWithLabel({
         height={height}
         fontSize={fontSize}
         defaultValue={defaultValue}
+        autocomplete={autocomplete}
       />
     </StyledInputWithLabel>
   );

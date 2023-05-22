@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const useValidInput = (validate, defaultValue = "") => {
+const useValidatedInputWithBlur = (validate, defaultValue = "") => {
   const [value, setValue] = useState(defaultValue);
   const [isTouched, setIsTouched] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const errorMsg = validate(value);
-  const isValid = errorMsg.trim() === "";
+  const isValid = errorMsg === null;
   const hasError = !isValid && isTouched;
 
   useEffect(() => {
@@ -35,4 +35,4 @@ const useValidInput = (validate, defaultValue = "") => {
   };
 };
 
-export default useValidInput;
+export default useValidatedInputWithBlur;

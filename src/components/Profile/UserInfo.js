@@ -33,6 +33,11 @@ const StyledUserInfo = styled.section`
   }
 `;
 
+const StyledButtonContainer = styled.div`
+  display: inline-flex;
+  gap: 10px;
+`;
+
 function UserInfo({ emoji, nickname, email }) {
   const navigate = useNavigate();
   return (
@@ -40,12 +45,17 @@ function UserInfo({ emoji, nickname, email }) {
       <div className="emoji">{emoji}</div>
       <p className="nickname">{nickname}</p>
       <p className="email">{email}</p>
-      <Button
-        background="mainMauve"
-        onClick={() => navigate(`/profile/modify`)}
-      >
-        프로필 수정
-      </Button>
+      <StyledButtonContainer>
+        <Button background="gray1" onClick={() => navigate(`/profile/modify`)}>
+          로그아웃
+        </Button>
+        <Button
+          background="mainMauve"
+          onClick={() => navigate(`/profile/modify`)}
+        >
+          프로필 수정
+        </Button>
+      </StyledButtonContainer>
     </StyledUserInfo>
   );
 }
