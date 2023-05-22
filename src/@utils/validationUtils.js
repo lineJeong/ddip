@@ -6,7 +6,7 @@ export const validateEmail = (email) => {
   if (!pattern.test(email)) {
     return "유효한 이메일 주소를 입력해주세요.";
   }
-  return "";
+  return null;
 };
 
 export const validateNickname = (nickname) => {
@@ -19,7 +19,7 @@ export const validateNickname = (nickname) => {
       return "닉네임은 영문, 숫자, 한글만 사용할 수 있습니다.";
     }
   }
-  return "";
+  return null;
 };
 
 export const validatePassword = (password) => {
@@ -44,14 +44,14 @@ export const validatePassword = (password) => {
     }
   }
 
-  return "";
+  return null;
 };
 
 export const validateConfirmPassword = (password, confirmPassword) => {
   if (password !== confirmPassword) {
     return "비밀번호가 일치하지 않습니다.";
   }
-  return "";
+  return null;
 };
 
 export const validateNotEmpty = (label, value) => {
@@ -59,7 +59,7 @@ export const validateNotEmpty = (label, value) => {
     const particle = particlesMatching[label] || "을(를)";
     return `${label}${particle} 입력해주세요.`;
   }
-  return "";
+  return null;
 };
 
 export const combineErrorMessages = (...errorMessages) => {
@@ -69,7 +69,7 @@ export const combineErrorMessages = (...errorMessages) => {
   );
 
   if (validErrorMessages.length === 0) {
-    return "";
+    return null;
   }
 
   return validErrorMessages[0];
