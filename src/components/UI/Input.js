@@ -10,7 +10,8 @@ const StyledInput = styled.input.attrs(
     onChange,
     onBlur,
     disabled,
-    defaultValue
+    defaultValue,
+    autocomplete
   }) => ({
     id,
     name,
@@ -20,7 +21,8 @@ const StyledInput = styled.input.attrs(
     onChange,
     onBlur,
     disabled,
-    defaultValue
+    defaultValue,
+    autocomplete
   })
 )`
   width: 100%;
@@ -74,7 +76,8 @@ function Input({
   radius = "default",
   height,
   fontSize,
-  defaultValue
+  defaultValue,
+  autocomplete
 }) {
   return (
     <StyledInput
@@ -90,6 +93,7 @@ function Input({
       height={height}
       fontSize={fontSize}
       defaultValue={defaultValue}
+      autocomplete={autocomplete}
     ></StyledInput>
   );
 }

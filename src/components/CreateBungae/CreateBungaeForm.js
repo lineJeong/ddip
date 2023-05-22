@@ -6,8 +6,8 @@ import styled from "styled-components";
 import MeetingLocation from "./MeetingLocation";
 import { numberOptionList, timeOptionList } from "../../@constants/dropdown";
 import useDropdown from "../../@hooks/useDropdown";
-import useInput from "../../@hooks/useInput";
-import * as bungaeInfoUtil from "../../@utils/bungaeInfo";
+import useInputWithValidation from "../../@hooks/useInputWithValidation";
+import * as bungaeInfoUtils from "../../@utils/bungaeInfoUtils";
 import Button from "../UI/Button";
 import Dropdown from "../UI/Dropdown";
 import InputWithLabel from "../UI/InputWithLabel";
@@ -42,7 +42,7 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
     initialMeetingLocation,
     initialOpenChat,
     initialIntroduction
-  } = bungaeInfoUtil.getInitialBungaeState(bungaeDetail);
+  } = bungaeInfoUtils.getInitialBungaeState(bungaeDetail);
 
   const {
     ref: numberDropdownRef,
@@ -61,9 +61,9 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
 
   const [meetingLocation] = useState(initialMeetingLocation);
   const { value: openChat, handleChangeInput: handleChangeOpenChat } =
-    useInput(initialOpenChat);
+    useInputWithValidation(null, initialOpenChat);
   const { value: introduction, handleChangeInput: handleChangeIntroduction } =
-    useInput(initialIntroduction);
+    useInputWithValidation(null, initialIntroduction);
 
   const handleSubmitBungae = () => {
     // 서버로 post(작성) 혹은 patch(수정) 요청

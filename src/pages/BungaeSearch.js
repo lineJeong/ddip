@@ -27,13 +27,11 @@ function BungaeSearchPage() {
   const [currentSigugun, setCurrentSigugun] = useState(null);
 
   const [bungaeList, setBungaeList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const sort = searchParams.get("sort");
 
   useEffect(() => {
     setBungaeList(dummyBungaeList);
-    setIsLoading(false);
   }, []);
 
   const handleSwitchTab = (selected) => {
@@ -62,8 +60,6 @@ function BungaeSearchPage() {
       sigugun: ""
     });
   };
-
-  if (isLoading) return;
 
   return (
     <RootPageContent>

@@ -80,7 +80,7 @@ const StyledLink = styled(Link)`
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
 `;
 
-function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
+function MainNavigation({ logoOnly, noSearchBox, isLoggedIn }) {
   const navigate = useNavigate();
 
   const ddipLogo = (
@@ -118,10 +118,10 @@ function MainNavigation({ logoOnly, noSearchBox, loggedIn }) {
           <span>번개 만들기</span>
         </Button>
         <div className="auth-buttons">
-          {loggedIn ? (
-            <div className="user-icon">
+          {isLoggedIn ? (
+            <Link to="/profile" className="user-icon">
               <img src="/images/user.svg" alt="user" />
-            </div>
+            </Link>
           ) : (
             <>
               <StyledLink to="/signup">회원가입</StyledLink>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-import * as bungaeInfoUtil from "../../@utils/bungaeInfo";
+import * as bungaeInfoUtils from "../../@utils/bungaeInfoUtils";
 import Button from "../UI/Button";
 
 const StyledBungaeHeader = styled.section`
@@ -105,9 +105,9 @@ function BungaeDetail({ bungaeDetail }) {
     description
   } = bungaeDetail;
 
-  const meetingLoacation = bungaeInfoUtil.getMeetingLocation(location);
-  const meetingTime = bungaeInfoUtil.getMeetingTime(meetingAt);
-  const createdDate = bungaeInfoUtil.getFormattedCreationDate(createdAt);
+  const meetingLoacation = bungaeInfoUtils.getMeetingLocation(location);
+  const meetingTime = bungaeInfoUtils.getMeetingTime(meetingAt);
+  const createdDate = bungaeInfoUtils.getFormattedCreationDate(createdAt);
 
   const handleClickEdit = () => {
     navigate(`/bungae/${id}/edit`, { state: { ...bungaeDetail } });

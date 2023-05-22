@@ -15,15 +15,11 @@ const StyledBungaeListSection = styled.section`
 function BungaeMainPage() {
   const [imminentBungaeList, setImminentBungaeList] = useState([]);
   const [newBungaeList, setNewBungaeList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setImminentBungaeList(dummyBungaeList2);
     setNewBungaeList(dummyBungaeList2);
-    setIsLoading(false);
   }, []);
-
-  if (isLoading) return;
 
   return (
     <RootPageContent>
