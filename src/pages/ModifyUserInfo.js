@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
+import useValidatedInputWithBlur from "../@hooks/useValidatedInputWithBlur";
+import { useAuthValue } from "../@store/use-auth";
+import * as authUtils from "../@utils/authUtils";
+import * as validationUtils from "../@utils/validationUtils";
 import ModifyEmojiForm from "../components/ModifyUserInfo/ModifyEmojiForm";
 import ModifyNicknameForm from "../components/ModifyUserInfo/ModifyNicknameForm";
 import ModifyPasswordForm from "../components/ModifyUserInfo/ModifyPasswordForm";
@@ -15,16 +20,29 @@ const StyledLink = styled(Link)`
 `;
 
 function ModifyUserInfoPage() {
-  const userInfo = {
-    emoji: "😶‍🌫️",
-    nickname: "닉네임입니다"
+  const { userInfo } = useAuthValue();
+
+  const [emoji, setEmoji] = useState(userInfo ? userInfo.emoji : "");
+  const nicknameInput = useValidatedInputWithBlur(
+    validationUtils.validateNickname,
+    userInfo ? userInfo.nickname : ""
+  );
+
+  const handleClickRandomEmoji = () => {
+    const randomEmoji = authUtils.getRandomEmoji();
+    setEmoji(randomEmoji);
   };
+
+  if (!userInfo) return;
 
   return (
     <RootPageContent maxWidth="sm">
       <HeadingPageContent heading="프로필 수정">
-        <ModifyEmojiForm emoji={userInfo.emoji} />
-        <ModifyNicknameForm />
+        <ModifyEmojiForm
+          emoji={emoji}
+          handleClickRandomEmoji={handleClickRandomEmoji}
+        />
+        <ModifyNicknameForm {...nicknameInput} />
         <ModifyPasswordForm />
         <StyledLink to="/profile/withdraw">회원 탈퇴하기</StyledLink>
       </HeadingPageContent>

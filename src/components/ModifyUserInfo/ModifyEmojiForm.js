@@ -26,13 +26,18 @@ const StyledModifyEmojiForm = styled.section`
   }
 `;
 
-function ModifyEmojiForm({ emoji }) {
+function ModifyEmojiForm({ emoji, handleClickRandomEmoji }) {
   return (
     <StyledModifyEmojiForm>
       <div className="label">이모지</div>
       <div className="emoji-change-box">
         <div className="emoji">{emoji}</div>
-        <IconButton width="60px" height="60px" background="mainMauve">
+        <IconButton
+          width="60px"
+          height="60px"
+          background="mainMauve"
+          onClick={handleClickRandomEmoji}
+        >
           <img src="/images/refresh.svg" alt="random change" />
         </IconButton>
       </div>
