@@ -23,12 +23,31 @@ const StyledBungaeListContent = styled.div`
   }
 `;
 
+const StyledPlaceholderCard = styled.li`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 285px;
+  height: 292px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: ${({ theme }) => theme.palette.gray2};
+`;
+
 function BungaeListContent({ bungaeList }) {
   return (
     <StyledBungaeListContent>
       <ul>
-        {bungaeList.map(
-          ({
+        {bungaeList.map((item, idx) => {
+          if (!item) {
+            return (
+              <StyledPlaceholderCard key={`placeholder-${idx}`}>
+                조건을 충족하는 모집글이 없습니다.
+              </StyledPlaceholderCard>
+            );
+          }
+
+          const {
             id,
             owner,
             title,
@@ -37,31 +56,28 @@ function BungaeListContent({ bungaeList }) {
             meetingAt,
             numberOfParticipants,
             numberOfRecruits
-          }) => {
-            const status = bungaeInfoUtils.getBungaeStatus(
-              createdAt,
-              meetingAt
-            );
-            const place = location.city + " " + location.state;
-            const time = bungaeInfoUtils.getMeetingTime(meetingAt);
-            const duration = bungaeInfoUtils.getBungaeDuration(meetingAt);
-            return (
-              <BungaeCard
-                key={id}
-                id={id}
-                status={status}
-                place={place}
-                time={time}
-                title={title}
-                emoji={owner.emoji}
-                nickname={owner.nickname}
-                numberOfParticipants={numberOfParticipants}
-                numberOfRecruits={numberOfRecruits}
-                duration={duration}
-              />
-            );
-          }
-        )}
+          } = item;
+
+          const status = bungaeInfoUtils.getBungaeStatus(createdAt, meetingAt);
+          const place = location.city + " " + location.state;
+          const time = bungaeInfoUtils.getMeetingTime(meetingAt);
+          const duration = bungaeInfoUtils.getBungaeDuration(meetingAt);
+          return (
+            <BungaeCard
+              key={id}
+              id={id}
+              status={status}
+              place={place}
+              time={time}
+              title={title}
+              emoji={owner.emoji}
+              nickname={owner.nickname}
+              numberOfParticipants={numberOfParticipants}
+              numberOfRecruits={numberOfRecruits}
+              duration={duration}
+            />
+          );
+        })}
       </ul>
     </StyledBungaeListContent>
   );
