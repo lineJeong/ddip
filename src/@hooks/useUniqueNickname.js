@@ -2,27 +2,35 @@ import { useEffect, useState } from "react";
 
 import * as authAPI from "../@api/authAPI";
 
-function useUniqueNickname(nickname, isNicknameValid) {
+function useUniqueNickname(nickname, isNicknameValid, handleBlurNickname) {
   const [isNicknameUnique, setIsNicknameUnique] = useState(null);
-  const [validMessage, setValidMessage] = useState(null);
-  const hasValidMessage = isNicknameUnique !== null;
+  const [nicknameStatusMessage, setNicknameStatusMessage] = useState(null);
+  const [isClickedToSubmit, setIsClickedToSubmit] = useState(false);
+
+  const hasCheckedNickname = isNicknameUnique !== null;
+  const hasNotCheckedNicknameWhenSubmit =
+    isClickedToSubmit && !hasCheckedNickname;
 
   useEffect(() => {
     setIsNicknameUnique(null);
+    setIsClickedToSubmit(false);
   }, [nickname]);
 
   useEffect(() => {
     if (isNicknameUnique === true) {
-      setValidMessage("사용 가능한 닉네임 입니다.");
+      setNicknameStatusMessage("사용 가능한 닉네임 입니다.");
     } else if (isNicknameUnique === false) {
-      setValidMessage("이미 존재하는 닉네임 입니다.");
-    } else {
-      setValidMessage(null);
+      setNicknameStatusMessage("이미 존재하는 닉네임 입니다.");
+    } else if (hasNotCheckedNicknameWhenSubmit) {
+      setNicknameStatusMessage("닉네임 중복 확인이 필요합니다.");
     }
-  }, [isNicknameUnique]);
+  }, [isNicknameUnique, hasNotCheckedNicknameWhenSubmit]);
 
-  const handleCheckNickname = async () => {
-    if (!isNicknameValid) return;
+  const hadleCheckNicknameDuplicate = async () => {
+    if (!isNicknameValid) {
+      handleBlurNickname();
+      return;
+    }
 
     try {
       await authAPI.validateNickname(nickname);
@@ -33,11 +41,17 @@ function useUniqueNickname(nickname, isNicknameValid) {
     }
   };
 
+  const handleCheckNicknameWhenSubmit = () => {
+    setIsClickedToSubmit(true);
+  };
+
   return {
     isNicknameUnique,
-    validMessage,
-    hasValidMessage,
-    handleCheckNickname
+    nicknameStatusMessage,
+    hasCheckedNickname,
+    hadleCheckNicknameDuplicate,
+    hasNotCheckedNicknameWhenSubmit,
+    handleCheckNicknameWhenSubmit
   };
 }
 
