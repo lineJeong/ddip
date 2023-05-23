@@ -63,7 +63,7 @@ function LoginPage() {
       );
     };
 
-    authActions.handleLogin(requestData, successCallback, errorCallback);
+    authActions.login(requestData, successCallback, errorCallback);
   };
 
   return (

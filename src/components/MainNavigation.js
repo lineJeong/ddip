@@ -83,6 +83,15 @@ const StyledLink = styled(Link)`
 function MainNavigation({ logoOnly, noSearchBox, isLoggedIn }) {
   const navigate = useNavigate();
 
+  const handleClickCreateBungaeButton = () => {
+    if (isLoggedIn) {
+      navigate("/bungae/create");
+    } else {
+      window.alert("로그인이 필요한 서비스입니다.");
+      navigate("/login");
+    }
+  };
+
   const ddipLogo = (
     <Link to="/" className="ddip-logo">
       <img className="logo" src="/images/logo.svg" alt="ddip-logo" />
@@ -110,7 +119,7 @@ function MainNavigation({ logoOnly, noSearchBox, isLoggedIn }) {
           color="white"
           iconWidth="16px"
           iconWithText
-          onClick={() => navigate("/bungae/create")}
+          onClick={handleClickCreateBungaeButton}
         >
           <div>
             <img src="/images/thunder.svg" alt="thunder" />

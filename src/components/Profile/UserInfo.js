@@ -38,7 +38,7 @@ const StyledButtonContainer = styled.div`
   gap: 10px;
 `;
 
-function UserInfo({ emoji, nickname, email }) {
+function UserInfo({ emoji, nickname, email, handleSubmitLogout }) {
   const navigate = useNavigate();
   return (
     <StyledUserInfo>
@@ -46,7 +46,7 @@ function UserInfo({ emoji, nickname, email }) {
       <p className="nickname">{nickname}</p>
       <p className="email">{email}</p>
       <StyledButtonContainer>
-        <Button background="gray1" onClick={() => navigate(`/profile/modify`)}>
+        <Button background="gray1" onClick={handleSubmitLogout}>
           로그아웃
         </Button>
         <Button
