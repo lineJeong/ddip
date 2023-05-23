@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import ErrorPage from "./Error";
 import * as authAPI from "../@api/authAPI";
 import useValidatedInputWithBlur from "../@hooks/useValidatedInputWithBlur";
 import * as validationUtils from "../@utils/validationUtils";
@@ -12,17 +11,25 @@ function EmailAuthPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
+  const emailInput = useValidatedInputWithBlur(validationUtils.validateEmail);
   const authNumberInput = useValidatedInputWithBlur(
     validationUtils.validateNotEmpty.bind(null, "인증번호")
   );
 
-  if (!state) {
-    return <ErrorPage />;
-  }
+  const combinedErrorMessage = validationUtils.combineErrorMessages(
+    emailInput.errorMessage,
+    authNumberInput.errorMessage
+  );
 
   let isFormValid = false;
-  if (state.isEmailValid && authNumberInput.isValid) {
-    isFormValid = true;
+  if (state) {
+    if (state.isEmailValid && authNumberInput.isValid) {
+      isFormValid = true;
+    }
+  } else {
+    if (emailInput.isValid && authNumberInput.isValid) {
+      isFormValid = true;
+    }
   }
 
   // 추후 이모지도 랜덤으로 전송해야 함!! 회원가입 때 혹은 이메일 인증 시!!
@@ -33,12 +40,12 @@ function EmailAuthPage() {
     }
 
     const requestData = {
-      email: state.email,
+      email: state ? state.email : emailInput.value,
       authNumber: authNumberInput.value
     };
 
     try {
-      authAPI.confirmAuthNumber(requestData);
+      await authAPI.confirmAuthNumber(requestData);
       window.alert("회원가입이 완료되었습니다.");
       navigate("/login");
     } catch (error) {
@@ -51,9 +58,11 @@ function EmailAuthPage() {
     <RootPageContent maxWidth="sm">
       <HeadingPageContent heading="이메일 인증">
         <EmailAuthForm
-          email={state.email}
+          state={state}
+          emailInput={emailInput}
+          authNumberInput={authNumberInput}
+          combinedErrorMessage={combinedErrorMessage}
           handleSubmit={handleSubmitAuthNumber}
-          {...authNumberInput}
         />
       </HeadingPageContent>
     </RootPageContent>

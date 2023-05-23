@@ -3,16 +3,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { dummyBungaeList } from "../@constants/dummy";
 import { ProfilePageTabMenu as tabMenu } from "../@constants/sortTab";
-import { useAuthActions } from "../@store/use-auth";
+import { useAuthActions, useAuthValue } from "../@store/use-auth";
 import RootPageContent from "../components/PageContent/RootPageContent";
 import UserBungaeList from "../components/Profile/UserBungaeList";
 import UserInfo from "../components/Profile/UserInfo";
 
 function ProfilePage() {
   const [bungaeList, setBungaeList] = useState([]);
-  const nickname = "닉네임입니다";
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const { userInfo } = useAuthValue();
   const authActions = useAuthActions();
 
   useEffect(() => {
@@ -27,12 +28,14 @@ function ProfilePage() {
     authActions.logout();
   };
 
+  if (!userInfo) return;
+
   return (
     <RootPageContent>
       <UserInfo
-        emoji="😶‍🌫️"
-        nickname={nickname}
-        email="test@test.com"
+        emoji={userInfo.emoji}
+        nickname={userInfo.nickname}
+        email={userInfo.email}
         handleSubmitLogout={handleSubmitLogout}
       />
       <UserBungaeList

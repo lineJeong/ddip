@@ -16,6 +16,11 @@ const InputWrapper = styled.div`
   width: 100%;
 `;
 
+const StyledParagraph = styled.p`
+  margin-bottom: 30px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+`;
+
 function SignupForm() {
   const navigate = useNavigate();
 
@@ -110,6 +115,9 @@ function SignupForm() {
 
   return (
     <>
+      <StyledParagraph>
+        이메일 인증까지 마쳐야 정상적으로 회원가입이 완료 됩니다.
+      </StyledParagraph>
       <InputWrapper>
         <InputWithLabel
           label="이메일"

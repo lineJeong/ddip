@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const StyledIconButton = styled.button`
+const StyledIconButton = styled.button.attrs(({ onClick }) => ({ onClick }))`
   min-height: ${({ height }) => height};
   min-width: ${({ width }) => width};
   max-height: ${({ height }) => height};
@@ -20,13 +20,14 @@ const StyledIconButton = styled.button`
     `}
 `;
 
-function IconButton({ children, width, height, background, outline }) {
+function IconButton({ children, width, height, background, outline, onClick }) {
   return (
     <StyledIconButton
       width={width}
       height={height}
       background={background}
       outline={outline}
+      onClick={onClick}
     >
       {children}
     </StyledIconButton>

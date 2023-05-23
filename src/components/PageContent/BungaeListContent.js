@@ -25,6 +25,8 @@ const StyledBungaeListContent = styled.div`
 
 const StyledPlaceholderCard = styled.li`
   display: inline-flex;
+  gap: 4px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 285px;
@@ -32,6 +34,10 @@ const StyledPlaceholderCard = styled.li`
   border: 1px solid black;
   border-radius: 5px;
   background: ${({ theme }) => theme.palette.gray2};
+  padding: 26px 20px;
+  text-align: center;
+  line-height: 1.3;
+  cursor: default;
 `;
 
 function BungaeListContent({ bungaeList }) {
@@ -42,7 +48,8 @@ function BungaeListContent({ bungaeList }) {
           if (!item) {
             return (
               <StyledPlaceholderCard key={`placeholder-${idx}`}>
-                조건을 충족하는 모집글이 없습니다.
+                <div>조건을 충족하는 모집글이 없습니다.</div>
+                <div>상단 검색창을 통해 더 많은 모집글을 확인해보세요.</div>
               </StyledPlaceholderCard>
             );
           }
