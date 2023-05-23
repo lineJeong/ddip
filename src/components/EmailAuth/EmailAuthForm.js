@@ -3,13 +3,11 @@ import Input from "../UI/Input";
 import StatusMessage from "../UI/StatusMessage";
 
 function EmailAuthForm({
-  email,
-  handleSubmit,
-  value,
-  hasError,
-  errorMessage,
-  handleChangeInput,
-  handleBlurInput
+  state,
+  emailInput,
+  authNumberInput,
+  combinedErrorMessage,
+  handleSubmit
 }) {
   return (
     <>
@@ -17,25 +15,31 @@ function EmailAuthForm({
         type="email"
         placeholder="이메일"
         radius="top"
-        defaultValue={email}
-        disabled
+        disabled={state}
+        value={state ? state.email : emailInput.value}
+        onChange={emailInput.handleChangeInput}
+        onBlur={emailInput.handleBlurInput}
       />
       <Input
         placeholder="인증번호"
         radius="bottom"
-        value={value}
-        onChange={handleChangeInput}
-        onBlur={handleBlurInput}
+        value={authNumberInput.value}
+        onChange={authNumberInput.handleChangeInput}
+        onBlur={authNumberInput.handleBlurInput}
       />
-      <StatusMessage hasStatusMessage={hasError}>{errorMessage}</StatusMessage>
+      <StatusMessage
+        hasStatusMessage={emailInput.hasError || authNumberInput.hasError}
+      >
+        {combinedErrorMessage}
+      </StatusMessage>
       <Button
-        onClick={handleSubmit}
         background="mainViolet"
         color="white"
         marginTop="16px"
         fullWidth
+        onClick={handleSubmit}
       >
-        회원 가입 완료
+        이메일 인증하기
       </Button>
     </>
   );
