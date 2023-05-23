@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-import ValidMessage from "../UI/ValidMessage";
+import StatusMessage from "../UI/StatusMessage";
 
 const StyledLoginForm = styled.form.attrs(({ onSubmit }) => ({ onSubmit }))`
   width: 100%;
@@ -38,12 +38,12 @@ function LoginForm({
           onChange={handleChangePassword}
           autocomplete="current-password"
         />
-        <ValidMessage hasValidMessage={showErrorMessage}>
+        <StatusMessage hasStatusMessage={showErrorMessage}>
           {errorMessage}
-        </ValidMessage>
-        <ValidMessage hasValidMessage={!!serverErrorMessage}>
+        </StatusMessage>
+        <StatusMessage hasStatusMessage={!!serverErrorMessage}>
           {serverErrorMessage}
-        </ValidMessage>
+        </StatusMessage>
         <Button
           background="mainViolet"
           color="white"

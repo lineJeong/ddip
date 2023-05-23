@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
 
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-import ValidMessage from "../UI/ValidMessage";
+import StatusMessage from "../UI/StatusMessage";
 
 const StyledParagraph = styled.p`
   margin-bottom: 30px;
@@ -17,6 +19,8 @@ const StyledButtonContainer = styled.div`
 `;
 
 function WithdrawalForm() {
+  const navigate = useNavigate();
+
   return (
     <>
       <StyledParagraph>
@@ -24,9 +28,14 @@ function WithdrawalForm() {
       </StyledParagraph>
       <Input type="email" placeholder="이메일" radius="top" disabled />
       <Input type="password" placeholder="비밀번호" radius="bottom" />
-      <ValidMessage hasValidMessage>비밀번호를 입력해주세요.</ValidMessage>
+      <StatusMessage hasStatusMessage>비밀번호를 입력해주세요.</StatusMessage>
       <StyledButtonContainer>
-        <Button background="white" outline fullWidth>
+        <Button
+          background="white"
+          onClick={() => navigate(-1)}
+          outline
+          fullWidth
+        >
           취소
         </Button>
         <Button background="mainViolet" color="white" fullWidth>

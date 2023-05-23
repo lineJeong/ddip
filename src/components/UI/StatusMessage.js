@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const StyledValidMessage = styled.p`
+const StyledStatusMessage = styled.p`
   color: ${({ theme }) => theme.palette.errorRed};
   font-size: ${({ theme }) => theme.fontSize.xs};
   margin-top: 6px;
@@ -13,10 +13,12 @@ const StyledValidMessage = styled.p`
     `}
 `;
 
-function ValidMessage({ hasValidMessage, success, children }) {
-  if (!hasValidMessage) return null;
+function StatusMessage({ hasStatusMessage, success, children }) {
+  if (!hasStatusMessage) return null;
 
-  return <StyledValidMessage success={success}>{children}</StyledValidMessage>;
+  return (
+    <StyledStatusMessage success={success}>{children}</StyledStatusMessage>
+  );
 }
 
-export default ValidMessage;
+export default StatusMessage;
