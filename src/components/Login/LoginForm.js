@@ -19,51 +19,34 @@ function LoginForm({
   serverErrorMessage
 }) {
   return (
-    <>
-      <StyledLoginForm onSubmit={handleSubmitLogin}>
-        <Input
-          name="email"
-          type="email"
-          placeholder="이메일"
-          radius="top"
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        <Input
-          name="password"
-          type="password"
-          placeholder="비밀번호"
-          radius="bottom"
-          value={password}
-          onChange={handleChangePassword}
-          autocomplete="current-password"
-        />
-        <StatusMessage hasStatusMessage={showErrorMessage}>
-          {errorMessage}
-        </StatusMessage>
-        <StatusMessage hasStatusMessage={!!serverErrorMessage}>
-          {serverErrorMessage}
-        </StatusMessage>
-        <Button
-          background="mainViolet"
-          color="white"
-          marginTop="16px"
-          fullWidth
-        >
-          로그인
-        </Button>
-      </StyledLoginForm>
-      <Button
-        type="button"
-        background="white"
-        color="black"
-        marginTop="8px"
-        outline
-        fullWidth
-      >
-        회원가입
+    <StyledLoginForm onSubmit={handleSubmitLogin}>
+      <Input
+        name="email"
+        type="email"
+        placeholder="이메일"
+        radius="top"
+        value={email}
+        onChange={handleChangeEmail}
+      />
+      <Input
+        name="password"
+        type="password"
+        placeholder="비밀번호"
+        radius="bottom"
+        value={password}
+        onChange={handleChangePassword}
+        autocomplete="current-password"
+      />
+      <StatusMessage hasStatusMessage={showErrorMessage}>
+        {errorMessage}
+      </StatusMessage>
+      <StatusMessage hasStatusMessage={!!serverErrorMessage}>
+        {serverErrorMessage}
+      </StatusMessage>
+      <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
+        로그인
       </Button>
-    </>
+    </StyledLoginForm>
   );
 }
 

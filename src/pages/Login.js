@@ -5,6 +5,7 @@ import useInputWithValidation from "../@hooks/useInputWithValidation";
 import { useAuthActions } from "../@store/use-auth";
 import * as validateUtils from "../@utils/validationUtils";
 import LoginForm from "../components/Login/LoginForm";
+import SignupAndEmailVerifyButton from "../components/Login/SignupAndEmailVerifyButton";
 import HeadingPageContent from "../components/PageContent/HeadingPageContent";
 import RootPageContent from "../components/PageContent/RootPageContent";
 
@@ -39,6 +40,10 @@ function LoginPage() {
     emailErrorMessage,
     passwordErrorMessage
   );
+
+  const handleClickSignup = () => {
+    navigate("/signup");
+  };
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
@@ -79,6 +84,7 @@ function LoginPage() {
           errorMessage={combinedPasswordErrorMessage}
           serverErrorMessage={serverErrorMessage}
         />
+        <SignupAndEmailVerifyButton handleClickSignup={handleClickSignup} />
       </HeadingPageContent>
     </RootPageContent>
   );
