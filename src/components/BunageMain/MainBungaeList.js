@@ -21,6 +21,12 @@ const StyledUpperContent = styled.div`
 `;
 
 function NewBungaeList({ enHeading, koHeading, bungaeList }) {
+  const filledBungaeList = [...bungaeList];
+
+  while (filledBungaeList.length < 4) {
+    filledBungaeList.push(null);
+  }
+
   return (
     <>
       <StyledUpperContent>
@@ -30,7 +36,7 @@ function NewBungaeList({ enHeading, koHeading, bungaeList }) {
         </div>
         <SimplePagination />
       </StyledUpperContent>
-      <BungaeListContent bungaeList={bungaeList} />
+      <BungaeListContent bungaeList={filledBungaeList} />
     </>
   );
 }

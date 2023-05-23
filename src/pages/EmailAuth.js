@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
+import ErrorPage from "./Error";
 import * as authAPI from "../@api/authAPI";
 import useValidatedInputWithBlur from "../@hooks/useValidatedInputWithBlur";
 import * as validationUtils from "../@utils/validationUtils";
@@ -14,6 +15,10 @@ function EmailAuthPage() {
   const authNumberInput = useValidatedInputWithBlur(
     validationUtils.validateNotEmpty.bind(null, "인증번호")
   );
+
+  if (!state) {
+    return <ErrorPage />;
+  }
 
   let isFormValid = false;
   if (state.isEmailValid && authNumberInput.isValid) {

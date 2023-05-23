@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { AuthValueContext, AuthActionsContext } from "./auth-context";
 import * as authAPI from "../@api/authAPI";
@@ -39,13 +39,34 @@ function AuthProvider({ children }) {
     }
   };
 
+  const handleLogout = useCallback(() => {
+    setToken(null);
+    setUserInfo(null);
+    authUtils.removeStoredTokenInfo();
+
+    if (logoutTimer) {
+      clearTimeout(logoutTimer);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!token || !duration) {
+      return;
+    }
+
+    logoutTimer = setTimeout(() => {
+      handleLogout();
+    }, [duration]);
+  }, [token, duration, handleLogout]);
+
   const authValue = {
     token,
     isLoggedIn,
     userInfo
   };
   const authActions = {
-    handleLogin
+    login: handleLogin,
+    logout: handleLogout
   };
 
   return (

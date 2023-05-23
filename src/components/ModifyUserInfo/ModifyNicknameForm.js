@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Button from "../UI/Button";
 import InputWithLabel from "../UI/InputWithLabel";
-import ValidMessage from "../UI/ValidMessage";
+import StatusMessage from "../UI/StatusMessage";
 
 const StyledModifyNicknameForm = styled.section`
   width: 100%;
@@ -22,7 +22,7 @@ function ModifyNicknameForm({ value, onChange }) {
       <Button background="white" radius="bottom" size="sm" outline fullWidth>
         닉네임 중복 확인
       </Button>
-      <ValidMessage hasValidMessage>닉네임을 입력해주세요.</ValidMessage>
+      <StatusMessage hasStatusMessage>닉네임을 입력해주세요.</StatusMessage>
       <Button background="mainViolet" color="white" marginTop="16px" fullWidth>
         닉네임 변경하기
       </Button>

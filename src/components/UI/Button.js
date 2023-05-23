@@ -42,7 +42,8 @@ const fullWidthStyle = css`
     `}
 `;
 
-const StyledButton = styled.button.attrs(({ onClick, disabled }) => ({
+const StyledButton = styled.button.attrs(({ type, onClick, disabled }) => ({
+  type,
   onClick,
   disabled
 }))`
@@ -107,6 +108,7 @@ const StyledButton = styled.button.attrs(({ onClick, disabled }) => ({
 
 function Button({
   children,
+  type = "submit",
   background,
   color,
   size = "base",
@@ -123,6 +125,7 @@ function Button({
 }) {
   return (
     <StyledButton
+      type={type}
       background={background}
       color={color}
       size={size}

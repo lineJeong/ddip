@@ -7,6 +7,6 @@ export const AuthValueContext = createContext({
 });
 
 export const AuthActionsContext = createContext({
-  handleLogin: () => {},
-  handleLogout: () => {}
+  login: () => {},
+  logout: () => {}
 });

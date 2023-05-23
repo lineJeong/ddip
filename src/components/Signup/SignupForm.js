@@ -9,7 +9,7 @@ import * as validationUtils from "../../@utils/validationUtils";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import InputWithLabel from "../UI/InputWithLabel";
-import ValidMessage from "../UI/ValidMessage";
+import StatusMessage from "../UI/StatusMessage";
 
 const InputWrapper = styled.div`
   margin-bottom: 16px;
@@ -56,11 +56,12 @@ function SignupForm() {
 
   const {
     isNicknameUnique,
-    validMessage,
-    hasValidMessage,
-    handleCheckNickname,
-    isLoading: isNicknameLoading
-  } = useUniqueNickname(nickname, isNicknameValid);
+    nicknameStatusMessage,
+    hasCheckedNickname,
+    hadleCheckNicknameDuplicate,
+    hasNotCheckedNicknameWhenSubmit,
+    handleCheckNicknameWhenSubmit
+  } = useUniqueNickname(nickname, isNicknameValid, handleBlurNickname);
 
   const combinedPasswordErrorMessage = validationUtils.combineErrorMessages(
     passwordErrorMessage,
@@ -72,8 +73,7 @@ function SignupForm() {
     isEmailValid &&
     isNicknameValid &&
     isPasswordValid &&
-    isConfirmPasswordValid &&
-    isNicknameUnique
+    isConfirmPasswordValid
   ) {
     isFormValid = true;
   }
@@ -85,6 +85,10 @@ function SignupForm() {
       handleBlurNickname();
       handleBlurPassword();
       handleBlurConfirmPassword();
+      return;
+    }
+    if (!isNicknameUnique) {
+      handleCheckNicknameWhenSubmit();
       return;
     }
 
@@ -116,9 +120,9 @@ function SignupForm() {
           onChange={handleChangeEmail}
           onBlur={handleBlurEmail}
         />
-        <ValidMessage hasValidMessage={hasEmailError}>
+        <StatusMessage hasStatusMessage={hasEmailError}>
           {emailErrorMessage}
-        </ValidMessage>
+        </StatusMessage>
       </InputWrapper>
       <InputWrapper>
         <InputWithLabel
@@ -136,20 +140,21 @@ function SignupForm() {
           size="sm"
           outline
           fullWidth
-          onClick={handleCheckNickname}
-          disabled={isNicknameLoading || hasNicknameError}
+          onClick={hadleCheckNicknameDuplicate}
         >
           닉네임 중복 확인
         </Button>
-        <ValidMessage hasValidMessage={hasNicknameError}>
+        <StatusMessage hasStatusMessage={hasNicknameError}>
           {nicknameErrorMessage}
-        </ValidMessage>
-        <ValidMessage
-          hasValidMessage={hasValidMessage}
+        </StatusMessage>
+        <StatusMessage
+          hasStatusMessage={
+            hasCheckedNickname || hasNotCheckedNicknameWhenSubmit
+          }
           success={isNicknameUnique}
         >
-          {validMessage}
-        </ValidMessage>
+          {nicknameStatusMessage}
+        </StatusMessage>
       </InputWrapper>
       <InputWrapper>
         <InputWithLabel
@@ -171,11 +176,11 @@ function SignupForm() {
           onChange={handleChangeConfirmPassword}
           onBlur={handleBlurConfirmPassword}
         />
-        <ValidMessage
-          hasValidMessage={hasPasswordError || hasConfirmPasswordError}
+        <StatusMessage
+          hasStatusMessage={hasPasswordError || hasConfirmPasswordError}
         >
           {combinedPasswordErrorMessage}
-        </ValidMessage>
+        </StatusMessage>
       </InputWrapper>
       <Button
         background="mainViolet"

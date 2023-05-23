@@ -1,6 +1,6 @@
 import Button from "../UI/Button";
 import Input from "../UI/Input";
-import ValidMessage from "../UI/ValidMessage";
+import StatusMessage from "../UI/StatusMessage";
 
 function EmailAuthForm({
   email,
@@ -27,7 +27,7 @@ function EmailAuthForm({
         onChange={handleChangeInput}
         onBlur={handleBlurInput}
       />
-      <ValidMessage hasValidMessage={hasError}>{errorMessage}</ValidMessage>
+      <StatusMessage hasStatusMessage={hasError}>{errorMessage}</StatusMessage>
       <Button
         onClick={handleSubmit}
         background="mainViolet"
