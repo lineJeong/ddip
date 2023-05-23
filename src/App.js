@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components";
 
 import AuthProvider from "./@store/AuthProvider";
 import theme from "./@styles/theme";
+import NavigateAfterLogout from "./pages/NavigateAfterLogout";
 
 const LoadingFallback = () => <div>Loading...</div>;
 
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
+        element: <NavigateAfterLogout />,
         children: [
           { index: true, element: <ProfilePage /> },
           { path: "created", element: <ProfilePage /> },
