@@ -18,7 +18,7 @@ const StyledButtonContainer = styled.div`
   gap: 10px;
 `;
 
-function WithdrawalForm() {
+function WithdrawalForm({ email }) {
   const navigate = useNavigate();
 
   return (
@@ -26,7 +26,13 @@ function WithdrawalForm() {
       <StyledParagraph>
         탈퇴가 완료된 계정은 다시 복구할 수 없습니다.
       </StyledParagraph>
-      <Input type="email" placeholder="이메일" radius="top" disabled />
+      <Input
+        type="email"
+        placeholder="이메일"
+        radius="top"
+        defaultValue={email}
+        disabled
+      />
       <Input type="password" placeholder="비밀번호" radius="bottom" />
       <StatusMessage hasStatusMessage>비밀번호를 입력해주세요.</StatusMessage>
       <StyledButtonContainer>
