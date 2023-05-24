@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import styled from "styled-components";
 
 import Button from "../UI/Button";
@@ -18,8 +16,15 @@ const StyledButtonContainer = styled.div`
   gap: 10px;
 `;
 
-function WithdrawalForm({ email }) {
-  const navigate = useNavigate();
+function WithdrawalForm({
+  email,
+  passwordInput,
+  serverErrorMessage,
+  handleSubmitWithdrawal,
+  handleClickGoBack
+}) {
+  const { value, handleChangeInput, errorMessage, showErrorMessage } =
+    passwordInput;
 
   return (
     <>
@@ -33,18 +38,34 @@ function WithdrawalForm({ email }) {
         defaultValue={email}
         disabled
       />
-      <Input type="password" placeholder="비밀번호" radius="bottom" />
-      <StatusMessage hasStatusMessage>비밀번호를 입력해주세요.</StatusMessage>
+      <Input
+        type="password"
+        placeholder="비밀번호"
+        radius="bottom"
+        value={value}
+        onChange={handleChangeInput}
+      />
+      <StatusMessage hasStatusMessage={showErrorMessage}>
+        {errorMessage}
+      </StatusMessage>
+      <StatusMessage hasStatusMessage={!!serverErrorMessage}>
+        {serverErrorMessage}
+      </StatusMessage>
       <StyledButtonContainer>
         <Button
           background="white"
-          onClick={() => navigate(-1)}
           outline
           fullWidth
+          onClick={handleClickGoBack}
         >
           취소
         </Button>
-        <Button background="mainViolet" color="white" fullWidth>
+        <Button
+          background="mainViolet"
+          color="white"
+          fullWidth
+          onClick={handleSubmitWithdrawal}
+        >
           회원 탈퇴
         </Button>
       </StyledButtonContainer>

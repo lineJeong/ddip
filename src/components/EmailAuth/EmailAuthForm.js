@@ -7,8 +7,11 @@ function EmailAuthForm({
   emailInput,
   authNumberInput,
   combinedErrorMessage,
-  handleSubmit
+  handleSubmit,
+  serverErrorMessage
 }) {
+  const hasEmailError = state ? !state.isEmailValid : emailInput.hasError;
+
   return (
     <>
       <Input
@@ -28,9 +31,12 @@ function EmailAuthForm({
         onBlur={authNumberInput.handleBlurInput}
       />
       <StatusMessage
-        hasStatusMessage={emailInput.hasError || authNumberInput.hasError}
+        hasStatusMessage={hasEmailError || authNumberInput.hasError}
       >
         {combinedErrorMessage}
+      </StatusMessage>
+      <StatusMessage hasStatusMessage={!!serverErrorMessage}>
+        {serverErrorMessage}
       </StatusMessage>
       <Button
         background="mainViolet"

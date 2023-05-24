@@ -68,7 +68,6 @@ function BungaeListContent({ bungaeList }) {
           const status = bungaeInfoUtils.getBungaeStatus(createdAt, meetingAt);
           const place = location.city + " " + location.state;
           const time = bungaeInfoUtils.getMeetingTime(meetingAt);
-          const duration = bungaeInfoUtils.getBungaeDuration(meetingAt);
           return (
             <BungaeCard
               key={id}
@@ -81,7 +80,7 @@ function BungaeListContent({ bungaeList }) {
               nickname={owner.nickname}
               numberOfParticipants={numberOfParticipants}
               numberOfRecruits={numberOfRecruits}
-              duration={duration}
+              meetingAt={meetingAt}
             />
           );
         })}

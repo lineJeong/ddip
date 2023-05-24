@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import styled, { css } from "styled-components";
+
+import * as bungaeInfoUtils from "../@utils/bungaeInfoUtils";
 
 const StyledBungaeCard = styled.li`
   width: 285px;
@@ -111,8 +114,25 @@ function BungaeCard({
   nickname,
   numberOfParticipants = 0,
   numberOfRecruits = 0,
-  duration = "00:00:00"
+  meetingAt
 }) {
+  const [duration, setDuration] = useState("00:00:00");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newDuration = bungaeInfoUtils.getBungaeDuration(
+        meetingAt,
+        interval
+      );
+      console.log("test");
+      setDuration(newDuration);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [duration, meetingAt]);
+
   return (
     <Link to={`/bungae/${id}`}>
       <StyledBungaeCard statusColor={status.color} statusText={status.text}>

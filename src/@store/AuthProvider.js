@@ -59,6 +59,21 @@ function AuthProvider({ children }) {
     }, [duration]);
   }, [token, duration, handleLogout]);
 
+  const handleWithdraw = async (
+    requestData,
+    successCallback,
+    errorCallback
+  ) => {
+    try {
+      await authAPI.withdraw(requestData);
+      handleLogout();
+      successCallback();
+    } catch (error) {
+      errorCallback();
+      console.error(error);
+    }
+  };
+
   const authValue = {
     token,
     isLoggedIn,
@@ -66,7 +81,8 @@ function AuthProvider({ children }) {
   };
   const authActions = {
     login: handleLogin,
-    logout: handleLogout
+    logout: handleLogout,
+    withdraw: handleWithdraw
   };
 
   return (
