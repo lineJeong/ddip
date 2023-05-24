@@ -19,10 +19,11 @@ const getDuration = (meetingAt) => {
   return duration;
 };
 
-export const getBungaeDuration = (meetingAt) => {
+export const getBungaeDuration = (meetingAt, interval) => {
   const duration = getDuration(meetingAt);
 
-  if (duration <= 0) {
+  if (duration <= 0 || !meetingAt) {
+    clearInterval(interval);
     return "00:00:00";
   }
 
