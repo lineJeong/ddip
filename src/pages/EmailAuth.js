@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as authAPI from "../@api/authAPI";
@@ -10,12 +11,12 @@ import RootPageContent from "../components/PageContent/RootPageContent";
 function EmailAuthPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const [serverErrorMessage, setServerErrorMessage] = useState(null);
 
   const emailInput = useValidatedInputWithBlur(validationUtils.validateEmail);
   const authNumberInput = useValidatedInputWithBlur(
     validationUtils.validateNotEmpty.bind(null, "인증번호")
   );
-
   const combinedErrorMessage = validationUtils.combineErrorMessages(
     emailInput.errorMessage,
     authNumberInput.errorMessage
@@ -34,6 +35,8 @@ function EmailAuthPage() {
 
   // 추후 이모지도 랜덤으로 전송해야 함!! 회원가입 때 혹은 이메일 인증 시!!
   const handleSubmitAuthNumber = async () => {
+    setServerErrorMessage(null);
+
     if (!isFormValid) {
       authNumberInput.handleBlurInput();
       return;
@@ -47,9 +50,9 @@ function EmailAuthPage() {
     try {
       await authAPI.confirmAuthNumber(requestData);
       window.alert("회원가입이 완료되었습니다.");
-      navigate("/login");
+      navigate("/login", { replace: true });
     } catch (error) {
-      window.alert("이메일 또는 인증번호가 올바르지 않습니다.");
+      setServerErrorMessage("이메일 또는 인증번호가 올바르지 않습니다.");
       console.error(error);
     }
   };
@@ -63,6 +66,7 @@ function EmailAuthPage() {
           authNumberInput={authNumberInput}
           combinedErrorMessage={combinedErrorMessage}
           handleSubmit={handleSubmitAuthNumber}
+          serverErrorMessage={serverErrorMessage}
         />
       </HeadingPageContent>
     </RootPageContent>

@@ -106,6 +106,7 @@ function SignupForm() {
     try {
       await authAPI.signup(requestData);
       navigate("/email-auth", {
+        replace: true,
         state: { email, isEmailValid }
       });
     } catch (error) {
