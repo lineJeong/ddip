@@ -17,6 +17,5 @@ export const validateNickname = (nickname) => {
 };
 
 export const withdraw = ({ email, password }) => {
-  console.log({ email, password });
   return http.delete("/auth/withdraw", { data: { email, password } });
 };
