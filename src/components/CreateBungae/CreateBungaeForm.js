@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
+import MapModal from "./MapModal";
 import MeetingLocation from "./MeetingLocation";
 import { numberOptionList, timeOptionList } from "../../@constants/dropdown";
 import useDropdown from "../../@hooks/useDropdown";
@@ -59,11 +60,20 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
     handleSelectOption: handleSelectTimeOption
   } = useDropdown(initialMeetingTime);
 
+  const [isMapOpen, setIsMapOpen] = useState(false);
   const [meetingLocation] = useState(initialMeetingLocation);
+
   const { value: openChat, handleChangeInput: handleChangeOpenChat } =
     useInputWithValidation(null, initialOpenChat);
   const { value: introduction, handleChangeInput: handleChangeIntroduction } =
     useInputWithValidation(null, initialIntroduction);
+
+  const handleOpenMap = () => {
+    setIsMapOpen(true);
+  };
+  const handleCloseMap = (callback) => {
+    setIsMapOpen(false);
+  };
 
   const handleSubmitBungae = () => {
     // 서버로 post(작성) 혹은 patch(수정) 요청
@@ -73,6 +83,7 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
 
   return (
     <>
+      <MapModal isMapOpen={isMapOpen} handleCloseMap={handleCloseMap} />
       <StyledDropdownContainer>
         <Dropdown
           label="모집 인원"
@@ -94,7 +105,10 @@ function CreateBungaeForm({ bungaeDetail, onSubmit }) {
         />
       </StyledDropdownContainer>
       <StyledMarginWrapper>
-        <MeetingLocation meetingLocation={meetingLocation} />
+        <MeetingLocation
+          meetingLocation={meetingLocation}
+          handleOpenMap={handleOpenMap}
+        />
       </StyledMarginWrapper>
       <StyledMarginWrapper>
         <InputWithLabel

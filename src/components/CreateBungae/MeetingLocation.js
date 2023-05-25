@@ -32,7 +32,9 @@ const StyledLocationBox = styled.div`
   }
 `;
 
-const StyledLocationButton = styled.button`
+const StyledLocationButton = styled.button.attrs(({ onClick }) => ({
+  onClick
+}))`
   outline: none;
   border: 1px solid black;
   border-left: 0px;
@@ -45,7 +47,7 @@ const StyledLocationButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
-function MeetingLocation({ meetingLocation }) {
+function MeetingLocation({ meetingLocation, handleOpenMap }) {
   return (
     <StyledLocationWrapper>
       <div className="label-wrapper">
@@ -56,7 +58,9 @@ function MeetingLocation({ meetingLocation }) {
           {!meetingLocation && <p>지도에서 장소를 지정해주세요</p>}
           {meetingLocation && <p className="active">{meetingLocation}</p>}
         </div>
-        <StyledLocationButton>장소 지정하기</StyledLocationButton>
+        <StyledLocationButton onClick={handleOpenMap}>
+          장소 지정하기
+        </StyledLocationButton>
       </StyledLocationBox>
     </StyledLocationWrapper>
   );

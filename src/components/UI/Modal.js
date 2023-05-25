@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -21,9 +21,18 @@ const ModalContents = styled.div`
   z-index: 20;
   border-radius: 5px;
   min-width: 20rem;
+
+  ${({ mapModal }) =>
+    mapModal &&
+    css`
+      padding: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 0px;
+    `}
 `;
 
-function Modal({ isOpen, children, onClose }) {
+function Modal({ isOpen, children, onClose, mapModal }) {
   if (!isOpen) return null;
 
   const handleClickBackdrop = (e) => {
@@ -32,7 +41,7 @@ function Modal({ isOpen, children, onClose }) {
 
   return createPortal(
     <ModalBackdrop onClick={handleClickBackdrop}>
-      <ModalContents>{children}</ModalContents>
+      <ModalContents mapModal={mapModal}>{children}</ModalContents>
     </ModalBackdrop>,
     document.body
   );

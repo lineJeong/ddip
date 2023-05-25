@@ -124,7 +124,6 @@ function BungaeCard({
         meetingAt,
         interval
       );
-      console.log("test");
       setDuration(newDuration);
     }, 1000);
 
