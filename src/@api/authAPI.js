@@ -1,7 +1,7 @@
 import http from "./http";
 
-export const signup = ({ email, nickname, password }) => {
-  return http.post("/auth/signup", { email, nickname, password });
+export const signup = ({ email, nickname, password, emoji }) => {
+  return http.post("/auth/signup", { email, nickname, password, emoji });
 };
 
 export const confirmAuthNumber = ({ email, authNumber }) => {

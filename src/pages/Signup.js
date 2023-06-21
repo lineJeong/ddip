@@ -5,6 +5,7 @@ import styled from "styled-components";
 import * as authAPI from "../@api/authAPI";
 import useUniqueNickname from "../@hooks/useUniqueNickname";
 import useValidatedInputWithBlur from "../@hooks/useValidatedInputWithBlur";
+import * as authUtils from "../@utils/authUtils";
 import * as validationUtils from "../@utils/validationUtils";
 import HeadingPageContent from "../components/PageContent/HeadingPageContent";
 import RootPageContent from "../components/PageContent/RootPageContent";
@@ -70,7 +71,8 @@ function SignupPage() {
     const requestData = {
       email: emailInput.value,
       nickname: nicknameInput.value,
-      password: passwordInput.value
+      password: passwordInput.value,
+      emoji: authUtils.getRandomEmoji()
     };
 
     try {
