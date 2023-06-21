@@ -10,11 +10,12 @@ export const setAuthTokenInfo = (token) => {
   localStorage.setItem("expiration", expiration);
 };
 
-export const setUserInfo = ({ emoji, email, nickname }) => {
+export const setUserInfo = ({ id, email, nickname, emoji }) => {
   const userInfo = {
-    emoji,
+    id,
     email,
-    nickname
+    nickname,
+    emoji
   };
   localStorage.setItem("userInfo", JSON.stringify(userInfo));
 };

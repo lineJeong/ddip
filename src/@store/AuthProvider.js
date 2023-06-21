@@ -26,12 +26,11 @@ function AuthProvider({ children }) {
   const handleLogin = async (requestData, successCallback, errorCallback) => {
     try {
       const response = await authAPI.login(requestData);
-      const { email, nickname, jwt } = response.data;
-      const emoji = "🥑";
+      const { id, email, nickname, jwt, emoji } = response.data;
       authUtils.setAuthTokenInfo(jwt);
-      authUtils.setUserInfo({ email, emoji, nickname });
+      authUtils.setUserInfo({ id, email, emoji, nickname });
       setToken(jwt);
-      setUserInfo({ email, emoji, nickname });
+      setUserInfo({ id, email, emoji, nickname });
       successCallback();
     } catch (error) {
       errorCallback();
